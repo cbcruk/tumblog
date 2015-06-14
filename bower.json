@@ -1,0 +1,17 @@
+{
+  "name": "blog--tumblr",
+  "version": "0.0.0",
+  "homepage": "https://github.com/cbcruk/blog--tumblr",
+  "authors": [
+    "이은수 <cbcruk@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}
