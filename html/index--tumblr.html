@@ -32,12 +32,22 @@
 
       <form action="/search" method="get">
         <div class="search">
-          <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input">
-          <input type="submit" value="{lang:Search}" class="search__submit">
+          <input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input" list="postType">
+          <datalist id="postType">
+            <option value="text">Text</option>
+            <option value="photo">Photo</option>
+            <option value="quote">Quote</option>
+            <option value="link">Link</option>
+            <option value="chat">Chat</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="answer">Answer</option>
+          </datalist>
+          <!-- <input type="submit" value="{lang:Search}" class="search__submit"> -->
         </div>
       </form>
 
-      <p>{CopyrightYears}</p>
+      <p class="copyright">{CopyrightYears}</p>
     </aside>
 
     <main id="main" class="main" tabindex="-1">

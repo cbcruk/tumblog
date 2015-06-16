@@ -67,11 +67,11 @@ var App = React.createClass({displayName: "App",
       }
     };
     return (
-      React.createElement("div", {className: "app"}, 
-        React.createElement("a", {href: "#main", className: "sr-only"}, "Skip to main content"), 
+      React.createElement("div", {className: "app"},
+        React.createElement("a", {href: "#main", className: "sr-only"}, "Skip to main content"),
 
-        React.createElement(Aside, React.__spread({},  _props.aside)), 
-        React.createElement("main", {id: "main", className: "main", tabIndex: "-1"}, 
+        React.createElement(Aside, React.__spread({},  _props.aside)),
+        React.createElement("main", {id: "main", className: "main", tabIndex: "-1"},
           React.createElement(RouteHandler, React.__spread({},  _props.main))
         )
       )
@@ -119,29 +119,29 @@ var Article = React.createClass({displayName: "Article",
     }
 
     return (
-      React.createElement("article", {id: this.props.attrs.id, className: "article"}, 
-        React.createElement("div", {className: "article__content"}, 
+      React.createElement("article", {id: this.props.attrs.id, className: "article"},
+        React.createElement("div", {className: "article__content"},
           content
-        ), 
-        React.createElement("footer", {className: "article__meta"}, 
-          
+        ),
+        React.createElement("footer", {className: "article__meta"},
+
             this.props.attrs.source_url &&
-            React.createElement("p", {className: "article__meta__item article__meta__item--source"}, 
-              React.createElement("i", {className: "fa fa-link"}), 
-              React.createElement("q", {cite: this.props.attrs.source_url}, 
+            React.createElement("p", {className: "article__meta__item article__meta__item--source"},
+              React.createElement("i", {className: "fa fa-link"}),
+              React.createElement("q", {cite: this.props.attrs.source_url},
                 "출처: ", React.createElement("a", {href: "{this.props.attrs.source_url}"}, this.props.attrs.source_url)
               )
-            ), 
-          
-          
+            ),
+
+
             tagNodes &&
-            React.createElement("p", {className: "article__meta__item article__meta__item--tags"}, 
-              React.createElement("i", {className: "fa fa-tags"}), 
+            React.createElement("p", {className: "article__meta__item article__meta__item--tags"},
+              React.createElement("i", {className: "fa fa-tags"}),
               "태그: ", tagNodes
-            ), 
-          
-          React.createElement("p", {className: "article__meta__item article__meta__item--date"}, 
-            React.createElement("i", {className: "fa fa-clock-o"}), 
+            ),
+
+          React.createElement("p", {className: "article__meta__item article__meta__item--date"},
+            React.createElement("i", {className: "fa fa-clock-o"}),
             React.createElement("time", null, React.createElement(Link, {to: "post", params: this.props.attrs}, this.props.attrs.date))
           )
         )
@@ -178,26 +178,26 @@ var Aside = React.createClass({displayName: "Aside",
     });
 
     return (
-      React.createElement("aside", {id: "aside", className: "aside"}, 
-        React.createElement("div", {className: "blog"}, 
-          React.createElement("h1", {className: "blog__title"}, React.createElement(Link, {to: "/"}, this.props.data.title)), 
+      React.createElement("aside", {id: "aside", className: "aside"},
+        React.createElement("div", {className: "blog"},
+          React.createElement("h1", {className: "blog__title"}, React.createElement(Link, {to: "/"}, this.props.data.title)),
           React.createElement("p", {className: "blog__desc"}, this.props.data.description)
-        ), 
+        ),
 
-        React.createElement("ul", {className: "category"}, 
-          React.createElement("li", {className: "category__item"}, React.createElement(Link, {to: "about"}, "About")), 
-          React.createElement("li", {className: "category__item"}, React.createElement("a", {href: "/ask"}, "Ask")), 
+        React.createElement("ul", {className: "category"},
+          React.createElement("li", {className: "category__item"}, React.createElement(Link, {to: "about"}, "About")),
+          React.createElement("li", {className: "category__item"}, React.createElement("a", {href: "/ask"}, "Ask")),
           React.createElement("li", {className: "category__item"}, React.createElement("a", {href: "/archive"}, "Archive"))
-        ), 
+        ),
 
-        React.createElement("form", null, 
-          React.createElement("div", {className: "search"}, 
-            React.createElement("input", {type: "search", value: "", placeholder: "Search Post Type", value: this.props.filterText, ref: "filterTextInput", onChange: this.handleChange, list: "postType", className: "search__input"}), 
-            React.createElement("datalist", {id: "postType"}, 
+        React.createElement("form", null,
+          React.createElement("div", {className: "search"},
+            React.createElement("input", {type: "search", value: "", placeholder: "Search Post Type", value: this.props.filterText, ref: "filterTextInput", onChange: this.handleChange, list: "postType", className: "search__input"}),
+            React.createElement("datalist", {id: "postType"},
               typeNodes
             )
           )
-        ), 
+        ),
 
         React.createElement("p", {className: "copyright"}, "2010–", covertYear(this.props.data.updated))
       )
@@ -231,7 +231,7 @@ var Index = React.createClass({displayName: "Index",
     }.bind(this));
 
     return (
-      React.createElement("div", {id: "page", className: "page page--index"}, 
+      React.createElement("div", {id: "page", className: "page page--index"},
         articleNodes
       )
     );
@@ -254,7 +254,7 @@ var Permal = React.createClass({displayName: "Permal",
     });
 
     return (
-      React.createElement("div", {id: "page", className: "page page--permal"}, 
+      React.createElement("div", {id: "page", className: "page page--permal"},
         React.createElement(RouteHandler, {attrs: _item})
       )
     );
@@ -269,9 +269,9 @@ var React = require('react');
 var Photo = React.createClass({displayName: "Photo",
   render: function() {
     return (
-      React.createElement("div", {className: "photo"}, 
-        React.createElement("figure", {className: "photo__figure"}, 
-          React.createElement("img", {src: this.props.photos, alt: ""}), 
+      React.createElement("div", {className: "photo"},
+        React.createElement("figure", {className: "photo__figure"},
+          React.createElement("img", {src: this.props.photos, alt: ""}),
           React.createElement("figcaption", {className: "photo__caption", dangerouslySetInnerHTML: {__html: this.props.caption}})
         )
       )
@@ -282,10 +282,10 @@ var Photo = React.createClass({displayName: "Photo",
 var Links = React.createClass({displayName: "Links",
   render: function() {
     return (
-      React.createElement("div", {className: "link"}, 
-        React.createElement("a", {href: this.props.url, className: "link__box"}, 
-          React.createElement("div", {className: "link__meta"}, 
-            React.createElement("span", {className: "link__name"}, this.props.title), 
+      React.createElement("div", {className: "link"},
+        React.createElement("a", {href: this.props.url, className: "link__box"},
+          React.createElement("div", {className: "link__meta"},
+            React.createElement("span", {className: "link__name"}, this.props.title),
             React.createElement("span", {className: "link__host"}, this.props.publisher)
           )
         )
@@ -297,26 +297,26 @@ var Links = React.createClass({displayName: "Links",
 var About = React.createClass({displayName: "About",
   render: function() {
     return (
-      React.createElement("article", {id: "post_", className: "article article--text"}, 
-        React.createElement("h3", {className: "article__title"}, "About Page"), 
-        React.createElement("div", {className: "article__content"}, 
-          React.createElement("h4", null, "은수리의 기묘한 모험 ", React.createElement("small", null, "에 대하여")), 
-          React.createElement("p", null, "안녕하세요 저는 이은수입니다.", React.createElement("br", null), "29살의 나이로 경기도 광주에 살며 Front-end 관련 일을 하고있습니다."), 
+      React.createElement("article", {id: "post_", className: "article article--text"},
+        React.createElement("h3", {className: "article__title"}, "About Page"),
+        React.createElement("div", {className: "article__content"},
+          React.createElement("h4", null, "은수리의 기묘한 모험 ", React.createElement("small", null, "에 대하여")),
+          React.createElement("p", null, "안녕하세요 저는 이은수입니다.", React.createElement("br", null), "29살의 나이로 경기도 광주에 살며 Front-end 관련 일을 하고있습니다."),
 
-          React.createElement("h4", null, "About Me"), 
-          React.createElement("p", null, "저는 현재 Front-end 업무를 담당하고 있습니다. 주로 사용하는 언어는 역시 ", React.createElement("strong", null, "HTML, CSS"), "이고 부족하지만 ", React.createElement("em", null, "Javascript"), "를 활용해서 일을 하고있습니다."), 
-          React.createElement("p", null, "현재 CSS 설계에 대한 많은 생각들(…아마도 ", React.createElement("strong", null, "OOCSS"), ")을 하고 있으며 업무프로세스에 도움을 줄수있는 많은 툴들도 관심갖고 접목 시키려 노력중입니다."), 
-          React.createElement("p", null, "그런 의미에서 지금의 ", React.createElement("strong", null, "'은수리의기묘한모험'"), " 텀블러를 만들어 보았습니다.", React.createElement("br", null), 
-          "처음에 계획한대로 관심있는 분야들을 열심히 수집하고 어떻게 하면 더 효율적으로 가공해서 정보를 전달할지 고민하며 운영하고 있습니다.", React.createElement("br", null), 
-          "제가 갖고 있는 지식의 한계때문에 아직 부족한 점이 많지만 계속 노력중이며 조금씩 발전해 가고 있습니다."), 
+          React.createElement("h4", null, "About Me"),
+          React.createElement("p", null, "저는 현재 Front-end 업무를 담당하고 있습니다. 주로 사용하는 언어는 역시 ", React.createElement("strong", null, "HTML, CSS"), "이고 부족하지만 ", React.createElement("em", null, "Javascript"), "를 활용해서 일을 하고있습니다."),
+          React.createElement("p", null, "현재 CSS 설계에 대한 많은 생각들(…아마도 ", React.createElement("strong", null, "OOCSS"), ")을 하고 있으며 업무프로세스에 도움을 줄수있는 많은 툴들도 관심갖고 접목 시키려 노력중입니다."),
+          React.createElement("p", null, "그런 의미에서 지금의 ", React.createElement("strong", null, "'은수리의기묘한모험'"), " 텀블러를 만들어 보았습니다.", React.createElement("br", null),
+          "처음에 계획한대로 관심있는 분야들을 열심히 수집하고 어떻게 하면 더 효율적으로 가공해서 정보를 전달할지 고민하며 운영하고 있습니다.", React.createElement("br", null),
+          "제가 갖고 있는 지식의 한계때문에 아직 부족한 점이 많지만 계속 노력중이며 조금씩 발전해 가고 있습니다."),
 
-          React.createElement("h4", null, "Powered by"), 
-          React.createElement("ul", null, 
-            React.createElement("li", null, "Tumblr"), 
-            React.createElement("li", null, "Sublime Text"), 
-            React.createElement("li", null, "Sass"), 
-            React.createElement("li", null, "Grunt"), 
-            React.createElement("li", null, "Express"), 
+          React.createElement("h4", null, "Powered by"),
+          React.createElement("ul", null,
+            React.createElement("li", null, "Tumblr"),
+            React.createElement("li", null, "Sublime Text"),
+            React.createElement("li", null, "Sass"),
+            React.createElement("li", null, "Grunt"),
+            React.createElement("li", null, "Express"),
             React.createElement("li", null, "React")
           )
         )
@@ -345,12 +345,12 @@ var DefaultRoute = ReactRouter.DefaultRoute;
 var Route = ReactRouter.Route;
 
 var routes = (
-  React.createElement(Route, {handler: App, path: "/"}, 
-    React.createElement(Route, {name: "index", path: "/", handler: Index}), 
-    React.createElement(Route, {name: "permal", path: "/post", handler: Permal}, 
-      React.createElement(Route, {name: "about", path: "about", handler: Post.about}), 
+  React.createElement(Route, {handler: App, path: "/"},
+    React.createElement(Route, {name: "index", path: "/", handler: Index}),
+    React.createElement(Route, {name: "permal", path: "/post", handler: Permal},
+      React.createElement(Route, {name: "about", path: "about", handler: Post.about}),
       React.createElement(Route, {name: "post", path: ":id", handler: Article})
-    ), 
+    ),
     React.createElement(Route, {name: "page", path: "/page/:current", handler: Index})
   )
 );
@@ -23139,7 +23139,7 @@ var RouteHandler = require('./RouteHandler');
  *       <Route name="about" handler={About}/>
  *     </Route>
  *   ];
- *   
+ *
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
@@ -24362,9 +24362,9 @@ var createRouter = require('./createRouter');
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
- * 
+ *
  * Using HTML5 history and a custom "cursor" prop:
- * 
+ *
  *   Router.run(routes, Router.HistoryLocation, function (Handler) {
  *     React.render(<Handler cursor={cursor}/>, document.body);
  *   });
