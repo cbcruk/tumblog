@@ -142,7 +142,6 @@ blockquote {
 }
 
 .pagination {
-  transform: translateZ(0);
   position: fixed;
   right: 0;
   bottom: 0;
@@ -154,6 +153,7 @@ blockquote {
   box-shadow: 0 0 10px #ccc;
   opacity: 0.9;
   text-align: right;
+  will-change: transform;
   @include fsize(12px);
 
   &__prev {
@@ -257,6 +257,8 @@ blockquote {
   &__figure {
     margin: 0;
     font-weight: bold;
+
+    > img {will-change: width;}
 
     .photo--set & {cursor: pointer;}
   }
