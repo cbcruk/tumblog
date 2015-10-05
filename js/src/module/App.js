@@ -1,32 +1,33 @@
-var React = require('react');
-var $ = require('jquery');
-var ReactRouter = require('react-router');
-var RouteHandler = ReactRouter.RouteHandler;
+import React from 'react';
+import Aside from './Aside.js';
+import Index from './Index.js';
 
-var Aside = require('./Aside.js');
+import $ from 'jquery';
 
-var App = React.createClass({
-  getInitialState: function() {
-    return {
-      blog: {},
-      posts: [],
-      current: 1,
-      filterText: '',
-      total: 0
-    }
-  },
-  getDefaultProps: function() {
-    return {
-       url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
-       offset: 20
-    }
-  },
-  handleUserInput: function(filterText) {
+class App extends React.Component {
+  static defaultProps = {
+    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
+    offset: 20
+  }
+  static propTypes = {
+    url: React.PropTypes.string.isRequired,
+    offset: React.PropTypes.number.isRequired
+  }
+  state = {
+    blog: {},
+    posts: [],
+    current: 1,
+    filterText: '',
+    total: 0
+  }
+
+  handleUserInput = (filterText) => {
     this.setState({
       filterText: filterText
     });
-  },
-  loadCommentsFromServer: function() {
+  }
+
+  loadCommentsFromServer() {
     $.ajax({
       type: "GET",
       url: this.props.url,
@@ -36,25 +37,25 @@ var App = React.createClass({
         offset: this.state.offset || 0
       },
       cache: true,
-      success: function(data) {
-        if (this.isMounted()) {
-          this.setState({
-            blog: data.response.blog,
-            posts: data.response.posts,
-            total: data.response.total_posts
-          });
-        }
-      }.bind(this),
-      error: function(xhr, status, err) {
+      success: (data) => {
+        this.setState({
+          blog: data.response.blog,
+          posts: data.response.posts,
+          total: data.response.total_posts
+        });
+      },
+      error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
-      }.bind(this)
+      }
     });
-  },
-  componentDidMount: function() {
+  }
+
+  componentDidMount() {
     this.loadCommentsFromServer();
-  },
-  render: function() {
-    var _props = {
+  }
+
+  render() {
+    let props = {
       aside: {
         data: this.state.blog,
         filterText: this.state.filterText,
@@ -67,15 +68,13 @@ var App = React.createClass({
     };
     return (
       <div className="app">
-        <a href="#main" className="sr-only">Skip to main content</a>
-
-        <Aside {..._props.aside} />
+        <Aside {...props.aside} />
         <main id="main" className="main" tabIndex="-1">
-          <RouteHandler {..._props.main} />
+          <Index {...props.main} />
         </main>
       </div>
     );
   }
-});
+}
 
-module.exports = App;
+export default App;

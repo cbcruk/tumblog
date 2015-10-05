@@ -1,31 +1,28 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var RouteHandler = ReactRouter.RouteHandler;
-var Link = ReactRouter.Link;
+import React from 'react';
+import Article from './Article.js';
 
-var Article = require('./Article.js');
-
-var Index = React.createClass({
-  render: function() {
-    var articleNodes = this.props.data.map(function(post, index) {
-      var _props = {
-        key: index,
-        attrs: post
-      };
-      if (post.type.indexOf(this.props.filterText) === -1) {
-        return;
-      }
-      return (
-        <Article {..._props} />
-      );
-    }.bind(this));
-
+class Index extends React.Component {
+  render = () => {
     return (
       <div id="page" className="page page--index">
-        {articleNodes}
+        {
+          this.props.data.map((post, index) => {
+            let props = {
+              key: index,
+              attrs: post
+            };
+            if (post.type.indexOf(this.props.filterText) === -1) {
+              return false;
+            } else {
+              return (
+                <Article {...props} />
+              );
+            }
+          })
+        }
       </div>
     );
   }
-});
+}
 
-module.exports = Index;
+export default Index;

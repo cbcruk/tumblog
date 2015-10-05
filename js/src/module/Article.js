@@ -1,69 +1,106 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+import React from 'react';
+import Posts from './Post.js';
 
-var Posts = require('./Post.js');
+class Tags extends React.Component {
+  render = () => {
+    const tags = this.props.tags;
 
-
-var Article = React.createClass({
-  render: function() {
-    var content;
-    var tagNodes;
-    var _props;
-
-    if (this.props.attrs.type === 'photo') {
-      _props = {
-         photos: this.props.attrs.photos[0].alt_sizes[0].url,
-         caption: this.props.attrs.caption
-      };
-      content = <Posts.photo {..._props} />;
-    } else if (this.props.attrs.type === 'link') {
-      _props = {
-         url: this.props.attrs.url,
-         publisher: this.props.attrs.publisher,
-         title: this.props.attrs.title
-      };
-      content = <Posts.links {..._props} />;
+    if (tags.length > 0) {
+      return (
+        <p className="article__meta__item article__meta__item--tags">
+          {
+            tags.map(tag => {
+              return (
+                <span className="tags__item">#{tag}</span>
+              );
+            })
+          }
+        </p>
+      );
+    } else {
+      return false;
     }
+  }
+}
 
-    if (this.props.attrs.tags.length) {
-      tagNodes = this.props.attrs.tags.map(function(tag) {
-        return (
-          <span className="tags__item">#{tag}</span>
-        );
-      });
+class Source extends React.Component {
+  render = () => {
+    const source = this.props.source;
+
+    if (source) {
+      return (
+        <p className="article__meta__item article__meta__item--source">
+          <q cite={source}>
+            <a href="{source}">{source}</a>
+          </q>
+        </p>
+      );
+    } else {
+      return false;
+    }
+  }
+}
+
+class Content extends React.Component {
+  render = () => {
+    const attrs = this.props.attrs;
+    let content;
+    let props;
+
+    switch (attrs.type) {
+      case 'photo':
+        props = {
+           photos: attrs.photos[0].alt_sizes[3].url,
+           caption: attrs.caption
+        };
+        content = <Posts.photo {...props} />;
+        break;
+
+      case 'link':
+        props = {
+           url: attrs.url,
+           publisher: attrs.publisher,
+           title: attrs.title
+        };
+        content = <Posts.links {...props} />;
+        break;
+
+      case 'text':
+        props = {
+           body: attrs.body,
+           title: attrs.title
+        };
+        content = <Posts.text {...props} />;
+        break;
+
+      default:
     }
 
     return (
-      <article id={this.props.attrs.id} className="article">
-        <div className="article__content">
-          {content}
-        </div>
+      <div className="article__content">
+        {content}
+      </div>
+    );
+  }
+}
+
+class Article extends React.Component {
+  render = () => {
+    const attrs = this.props.attrs;
+
+    return (
+      <article id={attrs.id} className="article">
+        <Content attrs={attrs} />
         <footer className="article__meta">
-          {
-            this.props.attrs.source_url &&
-            <p className="article__meta__item article__meta__item--source">
-              <i className="fa fa-link"></i>
-              <q cite={this.props.attrs.source_url}>
-                출처: <a href="{this.props.attrs.source_url}">{this.props.attrs.source_url}</a>
-              </q>
-            </p>
-          }
-          {
-            tagNodes &&
-            <p className="article__meta__item article__meta__item--tags">
-              <i className="fa fa-tags"></i>
-              태그: {tagNodes}
-            </p>
-          }
+          <Source source={attrs.source_url} />
+          <Tags tags={attrs.tags} />
           <p className="article__meta__item article__meta__item--date">
-            <i className="fa fa-clock-o"></i>
-            <time><Link to="post" params={this.props.attrs}>{this.props.attrs.date}</Link></time>
+            <time>{attrs.date}</time>
           </p>
         </footer>
       </article>
     );
   }
-});
+}
 
-module.exports = Article;
+export default Article;

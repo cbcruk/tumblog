@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>{Title}</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  {block:Description}
+  <meta name="description" content="{MetaDescription}" />
+  {/block:Description}
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/V1fnqfbvn/main.css">
+</head>
+<body>
+<body>
+  <a href="#main" class="sr-only">Skip to main content</a>
+
+  {block:IndexPage}
+    <aside class="aside">
+      <div class="blog">
+        <h1 class="blog__title"><a href="/" title="{lang:Home}">{Title}</a></h1>
+        <p class="blog__desc">{Description}</p>
+      </div>
+
+      <ul class="category">
+        <li class="category__item"><a href="/about" title="{lang:About me}">About</a></li>
+        <li class="category__item"><a href="/ask" title="{lang:Answer}">Ask</a></li>
+        <li class="category__item"><a href="/archive" title="{lang:Browse the archive}">Archive</a></li>
+        <li class="category__item"><a href="/rss" title="{lang:Get the RSS}">RSS</a></li>
+      </ul>
+
+      <form action="/search" method="get">
+        <div class="search">
+          <input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input" list="postType">
+          <datalist id="postType">
+            <option value="text">Text</option>
+            <option value="photo">Photo</option>
+            <option value="quote">Quote</option>
+            <option value="link">Link</option>
+            <option value="chat">Chat</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="answer">Answer</option>
+          </datalist>
+          <!-- <input type="submit" value="{lang:Search}" class="search__submit"> -->
+        </div>
+      </form>
+
+      <p class="copyright">{CopyrightYears}</p>
+    </aside>
+
+    <main id="main" class="main" tabindex="-1">
+      <div class="page">
+        <h2 class="sr-only page__title{block:SearchPage} hidden{/block:SearchPage}{block:TagPage} hidden{/block:TagPage}">Index Page</h2>
+
+        {block:SearchPage}
+          <h2 class="sr-only page__title">
+            {lang:Your search for SearchQuery returned SearchResultCount results}
+
+            {block:NoSearchResults}
+              {lang:Sorry no results for SearchQuery}
+            {/block:NoSearchResults}
+          </h2>
+        {/block:SearchPage}
+
+        {block:TagPage}
+          <h2 class="sr-only page__title">{lang:Tagged with} <small>{lang:Posts tagged Tag}</small></h2>
+        {/block:TagPage}
+
+        {block:Posts}
+          {block:Text}
+          <article id="post_{PostID}" class="article article--text">
+            {block:Title}
+            <h3 class="article__title">{Title}</h3>
+            {/block:Title}
+
+            <div class="article__content">{Body}</div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <i class="fa fa-link"></i> <q cite="{SourceURL}">{lang:Source}: <a href="{SourceURL}">{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:HasTags}
+              <p class="article__meta__item article__meta__item--tags">
+                <i class="fa fa-tags"></i> {lang:Tagged with} {block:Tags}<a class="article__tags__item" href="{TagURL}">{URLSafeTag}</a>{/block:Tags}
+              </p>
+              {/block:HasTags}
+
+              {block:Date}
+              <p class="article__meta__item article__meta__item--date">
+                <i class="fa fa-clock-o"></i> <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              </p>
+              {/block:Date}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Text}
+
+          {block:Video}
+          <article id="post_{PostID}" class="article article--video">
+            <div class="article__content">
+              <div class="video">
+                {block:VideoThumbnail}
+                <div class="video__thumbnail">
+                  <img src="{VideoThumbnailURL}" alt="">
+                </div>
+                {/block:VideoThumbnail}
+              </div>
+
+              {block:Caption}
+              {Caption}
+              {/block:Caption}
+            </div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <i class="fa fa-link"></i> <q cite="{SourceURL}">{lang:Source}: <a href="{SourceURL}">{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:HasTags}
+              <p class="article__meta__item article__meta__item--tags">
+                <i class="fa fa-tags"></i> {lang:Tagged with} {block:Tags}<a class="article__tags__item" href="{TagURL}">{URLSafeTag}</a>{/block:Tags}
+              </p>
+              {/block:HasTags}
+
+              {block:Date}
+              <p class="article__meta__item article__meta__item--date">
+                <i class="fa fa-clock-o"></i> <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              </p>
+              {/block:Date}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Video}
+
+          {block:Photo}
+          <article id="post_{PostID}" class="article article--photo">
+            <div class="article__content">
+              <div class="photo">
+                <figure class="photo__figure">
+                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+
+                  {block:Caption}
+                  <figcaption class="photo__caption">{Caption}</figcaption>
+                  {/block:Caption}
+                </figure>
+              </div>
+            </div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <i class="fa fa-link"></i> <q cite="{SourceURL}">{lang:Source}: <a href="{SourceURL}">{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:HasTags}
+              <p class="article__meta__item article__meta__item--tags">
+                <i class="fa fa-tags"></i> {lang:Tagged with} {block:Tags}<a class="article__tags__item" href="{TagURL}">{URLSafeTag}</a>{/block:Tags}
+              </p>
+              {/block:HasTags}
+
+              {block:Date}
+              <p class="article__meta__item article__meta__item--date">
+                <i class="fa fa-clock-o"></i> <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              </p>
+              {/block:Date}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Photo}
+
+          {block:Photoset}
+          <article id="post_{PostID}" class="article article--photoset">
+            <div class="article__content">
+              <div class="photo photo--set">
+                <figure class="photo__figure" data-photoset="{block:Photos} {PhotoURL-HighRes}{/block:Photos}">
+                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+
+                  {block:Caption}
+                  <figcaption class="photo__caption">{Caption}</figcaption>
+                  {/block:Caption}
+                </figure>
+              </div>
+            </div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <i class="fa fa-link"></i> <q cite="{SourceURL}">{lang:Source}: <a href="{SourceURL}">{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:HasTags}
+              <p class="article__meta__item article__meta__item--tags">
+                <i class="fa fa-tags"></i> {lang:Tagged with} {block:Tags}<a class="article__tags__item" href="{TagURL}">{URLSafeTag}</a>{/block:Tags}
+              </p>
+              {/block:HasTags}
+
+              {block:Date}
+              <p class="article__meta__item article__meta__item--date">
+                <i class="fa fa-clock-o"></i> <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              </p>
+              {/block:Date}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Photoset}
+
+          {block:Link}
+          <article id="post_{PostID}" class="article article--link">
+            <div class="article__content">
+              <div class="link">
+                <a href="{URL}" class="link__box">
+                  <div class="link__meta">
+                    <span class="link__name">{Name}</span>
+                    <span class="link__host">{block:Host}{Host}{/block:Host}</span>
+                  </div>
+                </a>
+              </div>
+
+              {block:Description}
+                {Description}
+              {/block:Description}
+            </div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <i class="fa fa-link"></i> <q cite="{SourceURL}">{lang:Source}: <a href="{SourceURL}">{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:HasTags}
+              <p class="article__meta__item article__meta__item--tags">
+                <i class="fa fa-tags"></i> {lang:Tagged with} {block:Tags}<a class="article__tags__item" href="{TagURL}">{URLSafeTag}</a>{/block:Tags}
+              </p>
+              {/block:HasTags}
+
+              {block:Date}
+              <p class="article__meta__item article__meta__item--date">
+                <i class="fa fa-clock-o"></i> <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              </p>
+              {/block:Date}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Link}
+        {/block:Posts}
+      </div>
+
+      {block:Pagination}
+        <nav class="pagination" role="navigation" aria-labelledby="paginglabel">
+          <h2 class="sr-only">Page Navigation</h2>
+
+          <span class="pagination__count">{CurrentPage} / {TotalPages}</span>
+
+          {block:PreviousPage}
+          <a href="{PreviousPage}" class="pagination__prev">{lang:Previous page}</a>
+          {/block:PreviousPage}
+
+          {block:NextPage}
+          <a href="{NextPage}" class="pagination__next">{lang:Next page}</a>
+          {/block:NextPage}
+        </nav>
+      {/block:Pagination}
+    </main>
+  {/block:IndexPage}
+
+
+
+
+
+
+
+
+
+
+  {block:PermalinkPage}
+    <aside class="aside">
+      <div class="blog">
+        <h1 class="blog__title"><a href="/" title="{lang:Home}">{Title}</a></h1>
+        <p class="blog__desc">{Description}</p>
+      </div>
+
+      <ul class="category">
+        <li class="category__item"><a href="/about" title="{lang:About me}">About</a></li>
+        <li class="category__item"><a href="/ask" title="{lang:Answer}">Ask</a></li>
+        <li class="category__item"><a href="/archive" title="{lang:Browse the archive}">Archive</a></li>
+        <li class="category__item"><a href="/rss" title="{lang:Get the RSS}">RSS</a></li>
+      </ul>
+
+      <form action="/search" method="get">
+        <div class="search">
+          <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input">
+          <input type="submit" value="{lang:Search}" class="search__submit">
+        </div>
+      </form>
+
+      <p>{CopyrightYears}</p>
+    </aside>
+
+    <main id="main" class="main" tabindex="-1">
+      <div class="page page--permal">
+      {block:Posts}
+        {block:Text}
+          <article id="post_{PostID}" class="article article--text">
+            {block:Title}
+            <h3 class="article__title">{Title}</h3>
+            {/block:Title}
+
+            <div class="article__content">{Body}</div>
+          </article>
+        {/block:Text}
+
+        {block:Video}
+          <article id="post_{PostID}" class="article article--video">
+            <div class="article__content">
+              <div class="video">
+                {block:VideoThumbnail}
+                <div class="video__thumbnail">
+                  <img src="{VideoThumbnailURL}" alt="">
+                </div>
+                {/block:VideoThumbnail}
+              </div>
+
+              {block:Caption}
+              {Caption}
+              {/block:Caption}
+            </div>
+          </article>
+        {/block:Video}
+
+        {block:Photo}
+          <article id="post_{PostID}" class="article article--photo">
+            <div class="article__content">
+              <div class="photo">
+                <figure class="photo__figure">
+                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+
+                  {block:Caption}
+                  <figcaption class="photo__caption">{Caption}</figcaption>
+                  {/block:Caption}
+                </figure>
+              </div>
+            </div>
+          </article>
+        {/block:Photo}
+
+        {block:Photoset}
+          <article id="post_{PostID}" class="article article--photoset">
+            <div class="article__content">
+              <div class="photo photo--set">
+                <ul class="photo__figures">
+                  {block:Photos}
+                    <li class="photo__figures__item"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></li>
+                  {/block:Photos}
+                </ul>
+
+                {block:Caption}
+                  {Caption}
+                {/block:Caption}
+              </div>
+            </div>
+          </article>
+        {/block:Photoset}
+
+        {block:Link}
+          <article id="post_{PostID}" class="article article--link">
+            <div class="article__content">
+              <div class="link">
+                <a href="{URL}" class="link__box">
+                  <div class="link__meta">
+                    <span class="link__name">{Name}</span>
+                    <span class="link__host">{block:Host}{Host}{/block:Host}</span>
+                  </div>
+                </a>
+              </div>
+
+              {block:Description}
+                {Description}
+              {/block:Description}
+            </div>
+          </article>
+        {/block:Link}
+      {/block:Posts}
+      </div>
+
+
+      {block:PermalinkPagination}
+        <nav class="pagination" role="navigation" aria-labelledby="paginglabel">
+          <h2 class="sr-only">Page Navigation</h2>
+
+          {block:PreviousPost}
+          <a href="{PreviousPost}" class="pagination__prev">{lang:Previous post}</a>
+          {/block:PreviousPost}
+
+          {block:NextPost}
+          <a href="{NextPost}" class="pagination__next">{lang:Next post}</a>
+          {/block:NextPost}
+        </nav>
+      {/block:PermalinkPagination}
+    </main>
+  {/block:PermalinkPage}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+function Photos() {
+  this.element = $('[data-photoset]');
+  this.photos = [];
+
+  this.init();
+}
+Photos.prototype = {
+  init: function() {
+    var that = this;
+    this.element.each(function() {
+      var $this = $(this);
+      var $img = $this.find('img');
+
+      that.mkArray($this.data('photoset'));
+
+      var setLength = that.photos.length;
+      var index = 0;
+
+      $img[0].src = that.photos[0];
+      $img.on('click', function() {
+        index++;
+        this.src = that.photos[index % setLength];
+      })
+    });
+  },
+  mkArray: function(arr) {
+    this.photos = arr.split(' ');
+    this.photos.shift();
+  }
+};
+var photos = new Photos();
+</script>
+</body>
+</body>
+</html>
