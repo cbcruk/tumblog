@@ -2,11 +2,13 @@ import React from 'react';
 
 class Photo extends React.Component {
   render() {
+    var { photos, caption } = this.props;
+
     return (
       <div className="photo">
         <figure className="photo__figure">
-          <img src={this.props.photos} alt="" />
-          <figcaption className="photo__caption" dangerouslySetInnerHTML={{__html: this.props.caption}} />
+          <img src={photos} alt="" data-action="zoom" />
+          <figcaption className="photo__caption" dangerouslySetInnerHTML={{__html: caption}} />
         </figure>
       </div>
     );
@@ -26,12 +28,14 @@ class Text extends React.Component {
 
 class Links extends React.Component {
   render() {
+    var { url, title, publisher } = this.props;
+
     return (
       <div className="link">
-        <a href={this.props.url} className="link__box">
+        <a href={url} className="link__box">
           <div className="link__meta">
-            <span className="link__name">{this.props.title}</span>
-            <span className="link__host">{this.props.publisher}</span>
+            <span className="link__name">{title}</span>
+            <span className="link__host">{publisher}</span>
           </div>
         </a>
       </div>

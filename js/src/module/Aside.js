@@ -15,11 +15,12 @@ class Aside extends React.Component {
     e.preventDefault();
   }
   render = () => {
+    var { blog, filterText, types } = this.props;
     return (
       <aside id="aside" className="aside">
         <div className="blog">
-          <h1 className="blog__title"><a href="/">{this.props.data.title}</a></h1>
-          <p className="blog__desc">{this.props.data.description}</p>
+          <h1 className="blog__title"><a href="/">{blog.title}</a></h1>
+          <p className="blog__desc">{blog.description}</p>
         </div>
 
         <ul className="category">
@@ -29,10 +30,10 @@ class Aside extends React.Component {
         </ul>
 
         <div className="search">
-          <input type="search" placeholder="Search Post Type" value={this.props.filterText} ref="filterTextInput" onChange={this.handleChange} list="postType" className="search__input" />
+          <input type="search" placeholder="Search Post Type" value={filterText} ref="filterTextInput" onChange={this.handleChange} list="postType" className="search__input" />
           <datalist id="postType">
             {
-              this.props.types.map(v => {
+              types.map(v => {
                 return (
                   <option value={v.toLowerCase()}>{v}</option>
                 );

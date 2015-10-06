@@ -90,15 +90,20 @@ var App = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _state = this.state;
+      var blog = _state.blog;
+      var filterText = _state.filterText;
+      var posts = _state.posts;
+
       var props = {
         aside: {
-          data: this.state.blog,
-          filterText: this.state.filterText,
+          blog: blog,
+          filterText: filterText,
           onUserInput: this.handleUserInput
         },
         main: {
-          data: this.state.posts,
-          filterText: this.state.filterText
+          posts: posts,
+          filterText: filterText
         }
       };
       return _react2['default'].createElement(
@@ -228,25 +233,55 @@ var Source = (function (_React$Component2) {
   return Source;
 })(_react2['default'].Component);
 
-var Content = (function (_React$Component3) {
-  _inherits(Content, _React$Component3);
+var Title = (function (_React$Component3) {
+  _inherits(Title, _React$Component3);
+
+  function Title() {
+    var _this3 = this;
+
+    _classCallCheck(this, Title);
+
+    _get(Object.getPrototypeOf(Title.prototype), 'constructor', this).apply(this, arguments);
+
+    this.render = function () {
+      var props = _this3.props;
+
+      if (props.title && props.type === 'text') {
+        return _react2['default'].createElement(
+          'h3',
+          { className: 'article__title' },
+          props.title
+        );
+      } else {
+        return false;
+      }
+    };
+  }
+
+  return Title;
+})(_react2['default'].Component);
+
+var Content = (function (_React$Component4) {
+  _inherits(Content, _React$Component4);
 
   function Content() {
-    var _this3 = this;
+    var _this4 = this;
 
     _classCallCheck(this, Content);
 
     _get(Object.getPrototypeOf(Content.prototype), 'constructor', this).apply(this, arguments);
 
     this.render = function () {
-      var attrs = _this3.props.attrs;
+      var attrs = _this4.props.attrs;
+
+      var title = undefined;
       var content = undefined;
       var props = undefined;
 
       switch (attrs.type) {
         case 'photo':
           props = {
-            photos: attrs.photos[0].alt_sizes[3].url,
+            photos: attrs.photos[0].alt_sizes[0].url,
             caption: attrs.caption
           };
           content = _react2['default'].createElement(_PostJs2['default'].photo, props);
@@ -283,28 +318,28 @@ var Content = (function (_React$Component3) {
   return Content;
 })(_react2['default'].Component);
 
-var Article = (function (_React$Component4) {
-  _inherits(Article, _React$Component4);
+var Article = (function (_React$Component5) {
+  _inherits(Article, _React$Component5);
 
   function Article() {
-    var _this4 = this;
+    var _this5 = this;
 
     _classCallCheck(this, Article);
 
     _get(Object.getPrototypeOf(Article.prototype), 'constructor', this).apply(this, arguments);
 
     this.render = function () {
-      var attrs = _this4.props.attrs;
+      var attrs = _this5.props.attrs;
 
       return _react2['default'].createElement(
         'article',
         { id: attrs.id, className: 'article' },
+        _react2['default'].createElement(Title, { title: attrs.title, type: attrs.type }),
         _react2['default'].createElement(Content, { attrs: attrs }),
         _react2['default'].createElement(
           'footer',
           { className: 'article__meta' },
           _react2['default'].createElement(Source, { source: attrs.source_url }),
-          _react2['default'].createElement(Tags, { tags: attrs.tags }),
           _react2['default'].createElement(
             'p',
             { className: 'article__meta__item article__meta__item--date' },
@@ -363,6 +398,11 @@ var Aside = (function (_React$Component) {
     };
 
     this.render = function () {
+      var _props = _this.props;
+      var blog = _props.blog;
+      var filterText = _props.filterText;
+      var types = _props.types;
+
       return _react2['default'].createElement(
         'aside',
         { id: 'aside', className: 'aside' },
@@ -375,13 +415,13 @@ var Aside = (function (_React$Component) {
             _react2['default'].createElement(
               'a',
               { href: '/' },
-              _this.props.data.title
+              blog.title
             )
           ),
           _react2['default'].createElement(
             'p',
             { className: 'blog__desc' },
-            _this.props.data.description
+            blog.description
           )
         ),
         _react2['default'].createElement(
@@ -418,11 +458,11 @@ var Aside = (function (_React$Component) {
         _react2['default'].createElement(
           'div',
           { className: 'search' },
-          _react2['default'].createElement('input', { type: 'search', placeholder: 'Search Post Type', value: _this.props.filterText, ref: 'filterTextInput', onChange: _this.handleChange, list: 'postType', className: 'search__input' }),
+          _react2['default'].createElement('input', { type: 'search', placeholder: 'Search Post Type', value: filterText, ref: 'filterTextInput', onChange: _this.handleChange, list: 'postType', className: 'search__input' }),
           _react2['default'].createElement(
             'datalist',
             { id: 'postType' },
-            _this.props.types.map(function (v) {
+            types.map(function (v) {
               return _react2['default'].createElement(
                 'option',
                 { value: v.toLowerCase() },
@@ -497,7 +537,7 @@ var Index = (function (_React$Component) {
       return _react2['default'].createElement(
         'div',
         { id: 'page', className: 'page page--index' },
-        _this.props.data.map(function (post, index) {
+        _this.props.posts.map(function (post, index) {
           var props = {
             key: index,
             attrs: post
@@ -551,14 +591,18 @@ var Photo = (function (_React$Component) {
   _createClass(Photo, [{
     key: "render",
     value: function render() {
+      var _props = this.props;
+      var photos = _props.photos;
+      var caption = _props.caption;
+
       return _react2["default"].createElement(
         "div",
         { className: "photo" },
         _react2["default"].createElement(
           "figure",
           { className: "photo__figure" },
-          _react2["default"].createElement("img", { src: this.props.photos, alt: "" }),
-          _react2["default"].createElement("figcaption", { className: "photo__caption", dangerouslySetInnerHTML: { __html: this.props.caption } })
+          _react2["default"].createElement("img", { src: photos, alt: "", "data-action": "zoom" }),
+          _react2["default"].createElement("figcaption", { className: "photo__caption", dangerouslySetInnerHTML: { __html: caption } })
         )
       );
     }
@@ -603,24 +647,29 @@ var Links = (function (_React$Component3) {
   _createClass(Links, [{
     key: "render",
     value: function render() {
+      var _props2 = this.props;
+      var url = _props2.url;
+      var title = _props2.title;
+      var publisher = _props2.publisher;
+
       return _react2["default"].createElement(
         "div",
         { className: "link" },
         _react2["default"].createElement(
           "a",
-          { href: this.props.url, className: "link__box" },
+          { href: url, className: "link__box" },
           _react2["default"].createElement(
             "div",
             { className: "link__meta" },
             _react2["default"].createElement(
               "span",
               { className: "link__name" },
-              this.props.title
+              title
             ),
             _react2["default"].createElement(
               "span",
               { className: "link__host" },
-              this.props.publisher
+              publisher
             )
           )
         )

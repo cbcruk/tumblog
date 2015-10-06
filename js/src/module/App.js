@@ -55,15 +55,16 @@ class App extends React.Component {
   }
 
   render() {
+    var { blog, filterText, posts } = this.state;
     let props = {
       aside: {
-        data: this.state.blog,
-        filterText: this.state.filterText,
+        blog: blog,
+        filterText: filterText,
         onUserInput: this.handleUserInput
       },
       main: {
-        data: this.state.posts,
-        filterText: this.state.filterText
+        posts: posts,
+        filterText: filterText
       }
     };
     return (

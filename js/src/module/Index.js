@@ -6,7 +6,7 @@ class Index extends React.Component {
     return (
       <div id="page" className="page page--index">
         {
-          this.props.data.map((post, index) => {
+          this.props.posts.map((post, index) => {
             let props = {
               key: index,
               attrs: post

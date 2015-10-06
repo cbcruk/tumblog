@@ -3,7 +3,7 @@ import Posts from './Post.js';
 
 class Tags extends React.Component {
   render = () => {
-    const tags = this.props.tags;
+    var { tags } = this.props;
 
     if (tags.length > 0) {
       return (
@@ -25,7 +25,7 @@ class Tags extends React.Component {
 
 class Source extends React.Component {
   render = () => {
-    const source = this.props.source;
+    var { source } = this.props;
 
     if (source) {
       return (
@@ -41,16 +41,31 @@ class Source extends React.Component {
   }
 }
 
+class Title extends React.Component {
+  render = () => {
+    var { props } = this;
+
+    if (props.title && props.type === 'text') {
+      return (
+        <h3 className="article__title">{props.title}</h3>
+      )
+    } else {
+      return false;
+    }
+  }
+}
+
 class Content extends React.Component {
   render = () => {
-    const attrs = this.props.attrs;
+    var { attrs } = this.props;
+    let title;
     let content;
     let props;
 
     switch (attrs.type) {
       case 'photo':
         props = {
-           photos: attrs.photos[0].alt_sizes[3].url,
+           photos: attrs.photos[0].alt_sizes[0].url,
            caption: attrs.caption
         };
         content = <Posts.photo {...props} />;
@@ -86,14 +101,14 @@ class Content extends React.Component {
 
 class Article extends React.Component {
   render = () => {
-    const attrs = this.props.attrs;
+    var { attrs } = this.props;
 
     return (
       <article id={attrs.id} className="article">
+        <Title title={attrs.title} type={attrs.type} />
         <Content attrs={attrs} />
         <footer className="article__meta">
           <Source source={attrs.source_url} />
-          <Tags tags={attrs.tags} />
           <p className="article__meta__item article__meta__item--date">
             <time>{attrs.date}</time>
           </p>
