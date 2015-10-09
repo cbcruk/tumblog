@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Photo extends React.Component {
+class Photo extends Component {
   render() {
-    var { photos, caption } = this.props;
+    const { photos, caption } = this.props;
 
     return (
       <div className="photo">
@@ -15,7 +15,7 @@ class Photo extends React.Component {
   }
 }
 
-class Text extends React.Component {
+class Text extends Component {
   rawMarkup() {
     return { __html: this.props.body };
   }
@@ -26,9 +26,9 @@ class Text extends React.Component {
   }
 }
 
-class Links extends React.Component {
+class Links extends Component {
   render() {
-    var { url, title, publisher } = this.props;
+    const { url, title, publisher } = this.props;
 
     return (
       <div className="link">

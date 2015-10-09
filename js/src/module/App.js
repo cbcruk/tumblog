@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+
 import Aside from './Aside.js';
 import Index from './Index.js';
 
-import $ from 'jquery';
+import { ajax } from 'jquery';
 
-class App extends React.Component {
+class App extends Component {
   static defaultProps = {
-    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
-    offset: 20
+    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts?offset=20',
   }
   static propTypes = {
-    url: React.PropTypes.string.isRequired,
-    offset: React.PropTypes.number.isRequired
+    url: PropTypes.string.isRequired
   }
   state = {
     blog: {},
@@ -55,7 +54,8 @@ class App extends React.Component {
   }
 
   render() {
-    var { blog, filterText, posts } = this.state;
+    const { blog, filterText, posts } = this.state;
+
     let props = {
       aside: {
         blog: blog,

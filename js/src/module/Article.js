@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Posts from './Post.js';
 
-class Tags extends React.Component {
+class Tags extends Component {
   render = () => {
-    var { tags } = this.props;
+    const { tags } = this.props;
 
     if (tags.length > 0) {
       return (
@@ -23,9 +23,9 @@ class Tags extends React.Component {
   }
 }
 
-class Source extends React.Component {
+class Source extends Component {
   render = () => {
-    var { source } = this.props;
+    const { source } = this.props;
 
     if (source) {
       return (
@@ -41,9 +41,9 @@ class Source extends React.Component {
   }
 }
 
-class Title extends React.Component {
+class Title extends Component {
   render = () => {
-    var { props } = this;
+    const { props } = this;
 
     if (props.title && props.type === 'text') {
       return (
@@ -55,9 +55,9 @@ class Title extends React.Component {
   }
 }
 
-class Content extends React.Component {
+class Content extends Component {
   render = () => {
-    var { attrs } = this.props;
+    const { attrs } = this.props;
     let title;
     let content;
     let props;
@@ -99,9 +99,9 @@ class Content extends React.Component {
   }
 }
 
-class Article extends React.Component {
+class Article extends Component {
   render = () => {
-    var { attrs } = this.props;
+    const { attrs } = this.props;
 
     return (
       <article id={attrs.id} className="article">

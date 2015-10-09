@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class Aside extends React.Component {
+class Aside extends Component {
   static defaultProps = {
     types: ['Text', 'Photo', 'Quote', 'Link', 'Chat', 'Audio', 'Video', 'Answer']
   }
   static propTypes = {
-    types: React.PropTypes.array.isRequired
+    types: PropTypes.array.isRequired
   }
   handleChange = (e) => {
     this.props.onUserInput(
@@ -15,7 +15,8 @@ class Aside extends React.Component {
     e.preventDefault();
   }
   render = () => {
-    var { blog, filterText, types } = this.props;
+    const { blog, filterText, types } = this.props;
+
     return (
       <aside id="aside" className="aside">
         <div className="blog">

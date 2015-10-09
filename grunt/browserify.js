@@ -9,7 +9,8 @@ module.exports = {
       ]
     },
     files: {
-      'js/build/tumblr.js': 'js/src/tumblr.js'
+      'js/build/tumblr.js': 'js/src/tumblr.js',
+      'js/build/vendor.js': 'js/vendor/vendor.js'
     }
   }
 };

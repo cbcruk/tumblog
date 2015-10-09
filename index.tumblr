@@ -10,7 +10,7 @@
   {/block:Description}
   <link rel="shortcut icon" href="{Favicon}">
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
-  <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/O9Rnvqq1y/main.css">
+  <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/4f3nvts5w/main.css">
 </head>
 <body>
 <body>
@@ -81,13 +81,9 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
-
-              {block:Date}
-              <p class="article__meta__item article__meta__item--date">{lang:Posted TimeAgo}</p>
-              {/block:Date}
 
               {block:NoteCount}
               <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
@@ -115,13 +111,9 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
-
-              {block:Date}
-              <p class="article__meta__item article__meta__item--date">{lang:Posted TimeAgo}</p>
-              {/block:Date}
 
               {block:NoteCount}
               <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
@@ -147,13 +139,9 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
-
-              {block:Date}
-              <p class="article__meta__item article__meta__item--date">{lang:Posted TimeAgo}</p>
-              {/block:Date}
 
               {block:NoteCount}
               <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
@@ -179,13 +167,9 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
-
-              {block:Date}
-              <p class="article__meta__item article__meta__item--date">{lang:Posted TimeAgo}</p>
-              {/block:Date}
 
               {block:NoteCount}
               <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
@@ -198,7 +182,7 @@
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="link">
-                <a href="{URL}" class="link__box">
+                <a href="{URL}" target="_blank" class="link__box">
                   <div class="link__meta">
                     <span class="link__name">{Name}</span>
                     <span class="link__host">{block:Host}{Host}{/block:Host}</span>
@@ -214,13 +198,9 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
-
-              {block:Date}
-              <p class="article__meta__item article__meta__item--date">{lang:Posted TimeAgo}</p>
-              {/block:Date}
 
               {block:NoteCount}
               <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
@@ -262,17 +242,26 @@
         <li class="category__item"><a href="/about" title="{lang:About me}">About</a></li>
         <li class="category__item"><a href="/ask" title="{lang:Answer}">Ask</a></li>
         <li class="category__item"><a href="/archive" title="{lang:Browse the archive}">Archive</a></li>
-        <li class="category__item"><a href="/rss" title="{lang:Get the RSS}">RSS</a></li>
       </ul>
 
       <form action="/search" method="get">
         <div class="search">
-          <input type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input">
-          <input type="submit" value="{lang:Search}" class="search__submit">
+          <input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input" list="postType">
+          <datalist id="postType">
+            <option value="text">Text</option>
+            <option value="photo">Photo</option>
+            <option value="quote">Quote</option>
+            <option value="link">Link</option>
+            <option value="chat">Chat</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="answer">Answer</option>
+          </datalist>
+          <!-- <input type="submit" value="{lang:Search}" class="search__submit"> -->
         </div>
       </form>
 
-      <p>{CopyrightYears}</p>
+      <p class="copyright">{CopyrightYears}</p>
     </aside>
 
     <main id="main" class="main" tabindex="-1">
@@ -346,7 +335,7 @@
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="link">
-                <a href="{URL}" class="link__box">
+                <a href="{URL}" target="_blank" class="link__box">
                   <div class="link__meta">
                     <span class="link__name">{Name}</span>
                     <span class="link__host">{block:Host}{Host}{/block:Host}</span>
