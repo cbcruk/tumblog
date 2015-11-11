@@ -10,7 +10,7 @@
   {/block:Description}
   <link rel="shortcut icon" href="{Favicon}">
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
-  <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/4f3nvts5w/main.css">
+  <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/YBSnw3j24/main.css">
 </head>
 <body>
 <body>
@@ -31,17 +31,20 @@
 
       <form action="/search" method="get">
         <div class="search">
-          <input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search keywords}" class="search__input" list="postType">
-          <datalist id="postType">
-            <option value="text">Text</option>
-            <option value="photo">Photo</option>
-            <option value="quote">Quote</option>
-            <option value="link">Link</option>
-            <option value="chat">Chat</option>
-            <option value="audio">Audio</option>
-            <option value="video">Video</option>
-            <option value="answer">Answer</option>
-          </datalist>
+          <label for="search">
+            <span class="sr-only">{lang:Search}</span>
+            <input type="search" name="q" id="search" placeholder="{lang:Search keywords}" class="awesomplete search__input" list="postType">
+            <datalist id="postType">
+              <option value="text">Text</option>
+              <option value="photo">Photo</option>
+              <option value="quote">Quote</option>
+              <option value="link">Link</option>
+              <option value="chat">Chat</option>
+              <option value="audio">Audio</option>
+              <option value="video">Video</option>
+              <option value="answer">Answer</option>
+            </datalist>
+          </label>
           <!-- <input type="submit" value="{lang:Search}" class="search__submit"> -->
         </div>
       </form>
@@ -81,7 +84,7 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
 
@@ -111,7 +114,7 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
 
@@ -127,7 +130,7 @@
             <div class="article__content">
               <div class="photo">
                 <figure class="photo__figure">
-                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-action="zoom">
+                  <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
 
                   {block:Caption}
                   <figcaption class="photo__caption">{Caption}</figcaption>
@@ -139,7 +142,7 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
 
@@ -154,8 +157,10 @@
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="photo photo--set">
-                <figure class="photo__figure">
-                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-action="zoom">
+                <figure class="photo__figure" data-count="{PhotoCount}">
+                  {block:Photos}
+                    <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
+                  {/block:Photos}
 
                   {block:Caption}
                   <figcaption class="photo__caption">{Caption}</figcaption>
@@ -167,7 +172,7 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
 
@@ -182,10 +187,16 @@
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="link">
-                <a href="{URL}" target="_blank" class="link__box">
+                {block:Thumbnail}
+                  <img data-src={Thumbnail-HighRes} alt="" data-action="zoom" class="link__thumbnail" />
+                {/block:Thumbnail}
+                <a href="{URL}" {Target} class="link__box">
                   <div class="link__meta">
-                    <span class="link__name">{Name}</span>
+                    <strong class="link__name">{Name}</strong>
                     <span class="link__host">{block:Host}{Host}{/block:Host}</span>
+                    {block:Excerpt}
+                      <p class="link__excerpt">{Excerpt}</p>
+                    {/block:Excerpt}
                   </div>
                 </a>
               </div>
@@ -198,7 +209,7 @@
             <footer class="article__meta">
               {block:ContentSource}
               <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" target="_blank">{SourceURL}</a></q>
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
               </p>
               {/block:ContentSource}
 
@@ -266,8 +277,8 @@
 
     <main id="main" class="main" tabindex="-1">
       <div class="page page--permal">
-      {block:Posts}
-        {block:Text}
+        {block:Posts}
+          {block:Text}
           <article id="post_{PostID}" class="article">
             {block:Title}
             <h3 class="article__title">{Title}</h3>
@@ -276,10 +287,22 @@
             <div class="article__content">
               <div class="text">{Body}</div>
             </div>
-          </article>
-        {/block:Text}
 
-        {block:Video}
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Text}
+
+          {block:Video}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="video">
@@ -294,15 +317,27 @@
               {Caption}
               {/block:Caption}
             </div>
-          </article>
-        {/block:Video}
 
-        {block:Photo}
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Video}
+
+          {block:Photo}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="photo">
                 <figure class="photo__figure">
-                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+                  <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
 
                   {block:Caption}
                   <figcaption class="photo__caption">{Caption}</figcaption>
@@ -310,35 +345,65 @@
                 </figure>
               </div>
             </div>
-          </article>
-        {/block:Photo}
 
-        {block:Photoset}
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Photo}
+
+          {block:Photoset}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="photo photo--set">
-                <ul class="photo__figures">
+                <figure class="photo__figure" data-count="{PhotoCount}">
                   {block:Photos}
-                    <li class="photo__figures__item"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></li>
+                    <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
                   {/block:Photos}
-                </ul>
 
-                {block:Caption}
-                  {Caption}
-                {/block:Caption}
+                  {block:Caption}
+                  <figcaption class="photo__caption">{Caption}</figcaption>
+                  {/block:Caption}
+                </figure>
               </div>
             </div>
-          </article>
-        {/block:Photoset}
 
-        {block:Link}
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
+          </article>
+          {/block:Photoset}
+
+          {block:Link}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="link">
-                <a href="{URL}" target="_blank" class="link__box">
+                {block:Thumbnail}
+                  <img data-src={Thumbnail-HighRes} alt="" data-action="zoom" class="link__thumbnail" />
+                {/block:Thumbnail}
+                <a href="{URL}" {Target} class="link__box">
                   <div class="link__meta">
-                    <span class="link__name">{Name}</span>
+                    <strong class="link__name">{Name}</strong>
                     <span class="link__host">{block:Host}{Host}{/block:Host}</span>
+                    {block:Excerpt}
+                      <p class="link__excerpt">{Excerpt}</p>
+                    {/block:Excerpt}
                   </div>
                 </a>
               </div>
@@ -347,9 +412,21 @@
                 {Description}
               {/block:Description}
             </div>
+
+            <footer class="article__meta">
+              {block:ContentSource}
+              <p class="article__meta__item article__meta__item--source">
+                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
+              </p>
+              {/block:ContentSource}
+
+              {block:NoteCount}
+              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
+              {/block:NoteCount}
+            </footer>
           </article>
-        {/block:Link}
-      {/block:Posts}
+          {/block:Link}
+        {/block:Posts}
       </div>
 
 
@@ -369,10 +446,7 @@
     </main>
   {/block:PermalinkPage}
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="http://static.tumblr.com/7xvgw71/epLnvqnqy/zoom.js"></script>
+<script src="http://static.tumblr.com/7xvgw71/rcvnw3j2z/vendor.min.js"></script>
 </body>
 </body>
 </html>

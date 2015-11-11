@@ -3,11 +3,11 @@ import React, { Component, PropTypes } from 'react';
 import Aside from './Aside.js';
 import Index from './Index.js';
 
-import { ajax } from 'jquery';
+import $ from 'jquery';
 
 class App extends Component {
   static defaultProps = {
-    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts?offset=20',
+    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
   }
   static propTypes = {
     url: PropTypes.string.isRequired
@@ -33,7 +33,7 @@ class App extends Component {
       dataType: 'jsonp',
       data: {
         api_key : "9XQHE6avIyXZBtaiQw8sIG7eNE4Ejzk41cgY2THef9YZr4TuG7",
-        offset: this.state.offset || 0
+        offset: 10
       },
       cache: true,
       success: (data) => {

@@ -10,8 +10,20 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "public/bower_components",
     "test",
-    "tests"
-  ]
+    "tests",
+    "./"
+  ],
+  "devDependencies": {
+    "jquery": "2.1.4",
+    "jquery-pjax": "~1.9.6",
+    "velocity": "~1.2.2",
+    "lazyloadxt": "~1.0.5",
+    "bootstrap": "~3.3.5",
+    "zoom.js": "https://github.com/fat/zoom.js.git#~0.0.1",
+    "awesomplete": "https://github.com/LeaVerou/awesomplete.git#~1.0.0"
+  },
+  "description": "",
+  "main": "",
+  "moduleType": []
 }

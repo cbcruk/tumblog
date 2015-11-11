@@ -31,16 +31,19 @@ class Aside extends Component {
         </ul>
 
         <div className="search">
-          <input type="search" placeholder="Search Post Type" value={filterText} ref="filterTextInput" onChange={this.handleChange} list="postType" className="search__input" />
-          <datalist id="postType">
-            {
-              types.map(v => {
-                return (
-                  <option value={v.toLowerCase()}>{v}</option>
-                );
-              })
-            }
-          </datalist>
+          <label htmlFor="search" className="sr-only">
+            Search
+            <input type="search" id="search" placeholder="Search Post Type" value={filterText} ref="filterTextInput" onChange={this.handleChange} list="postType" className="awesomplete search__input" />
+            <datalist id="postType">
+              {
+                types.map(v => {
+                  return (
+                    <option value={v.toLowerCase()}>{v}</option>
+                  );
+                })
+              }
+            </datalist>
+          </label>
         </div>
 
         <p className="copyright">2010–2015</p>

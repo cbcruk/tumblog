@@ -1,6 +1,15 @@
 module.exports = {
+  options: {
+    separator: ';',
+  },
   dist: {
-    src: ['./js/vendor/jquery.min.js', './js/vendor/bootstrap.min.js', './js/vendor/zoom.js'],
-    dest: './js/build/vendor.js'
+    src: [
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/zoom.js/dist/zoom.js',
+      'bower_components/lazyloadxt/dist/jquery.lazyloadxt.js',
+      'bower_components/awesomplete/awesomplete.js'
+    ],
+    dest: './js/build/vendor.js',
   }
 };

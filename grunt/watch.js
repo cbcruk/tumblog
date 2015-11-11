@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   browserify: {
-    files: ['js/src/**/*.js', 'js/vendor/**/*.js'],
+    files: ['js/src/**/*.js'],
     tasks: ['browserify:dev'],
     options: {
       livereload: true

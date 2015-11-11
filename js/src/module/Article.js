@@ -58,6 +58,7 @@ class Title extends Component {
 class Content extends Component {
   render = () => {
     const { attrs } = this.props;
+
     let title;
     let content;
     let props;
@@ -65,25 +66,27 @@ class Content extends Component {
     switch (attrs.type) {
       case 'photo':
         props = {
-           photos: attrs.photos[0].alt_sizes[0].url,
-           caption: attrs.caption
+          photos: attrs.photos[0].alt_sizes[0],
+          caption: attrs.caption
         };
         content = <Posts.photo {...props} />;
         break;
 
       case 'link':
         props = {
-           url: attrs.url,
-           publisher: attrs.publisher,
-           title: attrs.title
+          url: attrs.url,
+          publisher: attrs.publisher,
+          title: attrs.title,
+          photos: attrs.photos,
+          excerpt: attrs.excerpt
         };
         content = <Posts.links {...props} />;
         break;
 
       case 'text':
         props = {
-           body: attrs.body,
-           title: attrs.title
+          body: attrs.body,
+          title: attrs.title
         };
         content = <Posts.text {...props} />;
         break;
@@ -109,9 +112,6 @@ class Article extends Component {
         <Content attrs={attrs} />
         <footer className="article__meta">
           <Source source={attrs.source_url} />
-          <p className="article__meta__item article__meta__item--date">
-            <time>{attrs.date}</time>
-          </p>
         </footer>
       </article>
     );

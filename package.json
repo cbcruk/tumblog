@@ -42,26 +42,6 @@
     "reactify": "^1.1.1",
     "redux": "^3.0.2",
     "redux-devtools": "^2.1.5",
-    "time-grunt": "^1.2.1",
-    "tumblr.js": "0.0.5"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browser": {
-    "jquery": "./js/vendor/jquery.min.js",
-    "bootstrap": "./js/vendor/bootstrap.min.js",
-    "zoom": "./js/vendor/zoom.js"
-  },
-  "browserify-shim": {
-    "jquery": "$",
-    "bootstrap": {
-      "depends": ["jquery"]
-    },
-    "zoom": {
-      "depends": ["jquery", "bootstrap"]
-    }
+    "time-grunt": "^1.2.1"
   }
 }

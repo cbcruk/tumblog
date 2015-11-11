@@ -3,6 +3,7 @@
 @import "compass";
 @import "normalize";
 @import "zoom";
+@import "awesomplete";
 
 @function calculate-rem($size) {
   $remSize: $size / 16px;
@@ -99,9 +100,13 @@ blockquote {
     display: inline-block;
 
     & + & {margin-left: 5px;}
-    > a:hover {
-      border-bottom: 1px solid #ff80ab;
-      text-decoration: none;
+    &:first-letter {}
+
+    > a {
+      &:hover {
+        border-bottom: 1px solid #ff80ab;
+        text-decoration: none;
+      }
     }
   }
 }
@@ -110,12 +115,17 @@ blockquote {
   &__input {
     width: 100%;
     padding: 5px;
+    padding-left: 0;
+    border: 0;
+    border-bottom: 1px solid #ccc;
     font-size: 12px;
+
+    &::-webkit-calendar-picker-indicator {display: none;}
   }
 }
 
 .copyright {
-  margin-top: 10px;
+  margin-top: 50px;
   font-size: 12px;
   font-style: italic;
 }
@@ -158,7 +168,9 @@ blockquote {
     margin: 0;
     color: #404040;
   }
-  &__content {margin-top: 10px;}
+  &__content {
+    .article__title + & {margin-top: 10px;}
+  }
   &__meta {
     margin-top: 10px;
 
@@ -193,17 +205,33 @@ blockquote {
 
 .link {
   &__box {
+    display: block;
+    padding: 1em;
+    background-color: #f2f2f2;
+
     &:hover,
     &:focus {text-decoration: none;}
   }
+  &__thumbnail {display: block;}
   &__meta {
-    @include fsize(16px);
-    font-weight: bold;
-  }
-  &__name {background: rgba(255, 255, 0, 0.5);}
-  &__host {
     @include fsize(12px);
+  }
+  &__name {
+    @include fsize(16px);
+    background-color: transparent;
+    transition: 0.5s background-color;
+
+    &:hover {background-color: rgba(255,255,0, 0.5);}
+    &:after {
+      content: " >";
+    }
+  }
+  &__host {
     display: block;
+    color: lighten(#000, 30%);
+  }
+  &__excerpt {
+    margin-top: 1em;
   }
 }
 
