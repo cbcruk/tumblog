@@ -1,29 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 
-import Aside from './Aside.js';
-import Index from './Index.js';
-
-import $ from 'jquery';
+import Aside from './Aside.jsx';
+import Index from './Index.jsx';
 
 class App extends Component {
-  static defaultProps = {
-    url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
-  }
-  static propTypes = {
-    url: PropTypes.string.isRequired
-  }
-  state = {
-    blog: {},
-    posts: [],
-    current: 1,
-    filterText: '',
-    total: 0
-  }
+  constructor() {
+    super();
 
-  handleUserInput = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
+    this.state = {
+      blog: {},
+      posts: [],
+      current: 1,
+      filterText: '',
+      total: 0
+    };
   }
 
   loadCommentsFromServer() {
@@ -53,8 +43,14 @@ class App extends Component {
     this.loadCommentsFromServer();
   }
 
+  handleUserInput(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
   render() {
-    const { blog, filterText, posts } = this.state;
+    let { blog, filterText, posts } = this.state;
 
     let props = {
       aside: {
@@ -67,15 +63,26 @@ class App extends Component {
         filterText: filterText
       }
     };
+
     return (
       <div className="app">
         <Aside {...props.aside} />
-        <main id="main" className="main" tabIndex="-1">
+        <main
+          id="main"
+          className="main"
+          tabIndex="-1"
+        >
           <Index {...props.main} />
         </main>
       </div>
     );
   }
 }
+App.propTypes = {
+  url: PropTypes.string.isRequired
+};
+App.defaultProps = {
+  url: 'http://api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts',
+};
 
 export default App;

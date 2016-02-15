@@ -1,21 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 
 class Aside extends Component {
-  static defaultProps = {
-    types: ['Text', 'Photo', 'Quote', 'Link', 'Chat', 'Audio', 'Video', 'Answer']
-  }
-  static propTypes = {
-    types: PropTypes.array.isRequired
-  }
-  handleChange = (e) => {
+  handleChange(e) {
     this.props.onUserInput(
       this.refs.filterTextInput.getDOMNode().value
     );
 
     e.preventDefault();
   }
-  render = () => {
-    const { blog, filterText, types } = this.props;
+
+  render() {
+    let { blog, filterText, types } = this.props;
 
     return (
       <aside id="aside" className="aside">
@@ -36,7 +31,7 @@ class Aside extends Component {
             <input type="search" id="search" placeholder="Search Post Type" value={filterText} ref="filterTextInput" onChange={this.handleChange} list="postType" className="awesomplete search__input" />
             <datalist id="postType">
               {
-                types.map(v => {
+                types.map((v) => {
                   return (
                     <option value={v.toLowerCase()}>{v}</option>
                   );
@@ -51,5 +46,11 @@ class Aside extends Component {
     );
   }
 }
+Aside.propTypes = {
+  types: PropTypes.array.isRequired
+};
+Aside.defaultProps = {
+  types: ['Text', 'Photo', 'Quote', 'Link', 'Chat', 'Audio', 'Video', 'Answer']
+};
 
 export default Aside;

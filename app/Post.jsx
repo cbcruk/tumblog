@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Photo extends Component {
   render() {
-    const { photos, caption } = this.props;
+    let { photos, caption } = this.props;
 
     return (
       <div className="photo">
@@ -19,6 +19,7 @@ class Text extends Component {
   rawMarkup() {
     return { __html: this.props.body };
   }
+
   render() {
     return (
       <div className="text" dangerouslySetInnerHTML={this.rawMarkup()} />
@@ -28,7 +29,7 @@ class Text extends Component {
 
 class Links extends Component {
   render() {
-    const { url, title, publisher, photos, excerpt } = this.props;
+    let { url, title, publisher, photos, excerpt } = this.props;
 
     return (
       <div className="link">

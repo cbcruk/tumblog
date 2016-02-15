@@ -1,7 +1,7 @@
-var React = require('react');
+import React, { Component } from 'react';
 
-var Nav = React.createClass({
-  render: function() {
+class Nav extends Component {
+  render() {
     return (
       <nav className="pagination" role="navigation" aria-labelledby="paginglabel">
         <h2 className="sr-only">Page Navigation</h2>
@@ -9,13 +9,12 @@ var Nav = React.createClass({
         {this.props.current !== 1 ? <button type="button" className="pagination__prev">이전 페이지</button> : ''}
         {this.props.current !== this.props.total ? <button type="button" className="pagination__next">다음 페이지</button> : ''}
 
-
         <span className="pagination__count">{this.state.current} / {Math.ceil(this.state.total / this.props.offset)}</span>
         {this.state.current !== 1 ? <Link to="page" params={{ current: this.state.current - 1 }} className="pagination__prev">이전 페이지</Link> : ''}
         {this.state.current !== Math.ceil(this.state.total / this.props.offset) ? <Link to="page" params={{ current: this.state.current + 1 }} className="pagination__next">다음 페이지</Link> : ''}
       </nav>
     );
   }
-});
+}
 
-module.exports = Nav;
+export default Nav;

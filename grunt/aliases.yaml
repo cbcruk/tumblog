@@ -1,9 +1,0 @@
-default:
-  - 'connect'
-  - 'watch'
-  - 'concurrent:first'
-  - 'concurrent:second'
-
-minifier:
-  - 'concat'
-  - 'uglify'

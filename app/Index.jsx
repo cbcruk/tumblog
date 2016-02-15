@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import Article from './Article.js';
+
+import Article from './Article.jsx';
 
 class Index extends Component {
-  render = () => {
-    const { posts, filterText } = this.props;
+  render() {
+    let { posts, filterText } = this.props;
+
     return (
       <div id="page" className="page page--index">
         {
@@ -12,6 +14,7 @@ class Index extends Component {
               key: index,
               attrs: post
             };
+
             if (post.type.indexOf(filterText) === -1) {
               return false;
             } else {

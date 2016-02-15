@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Posts from './Post.js';
+
+import Posts from './Post.jsx';
 
 class Tags extends Component {
-  render = () => {
-    const { tags } = this.props;
+  render() {
+    let { tags } = this.props;
 
     if (tags.length > 0) {
       return (
@@ -24,8 +25,8 @@ class Tags extends Component {
 }
 
 class Source extends Component {
-  render = () => {
-    const { source } = this.props;
+  render() {
+    let { source } = this.props;
 
     if (source) {
       return (
@@ -42,8 +43,8 @@ class Source extends Component {
 }
 
 class Title extends Component {
-  render = () => {
-    const { props } = this;
+  render() {
+    let { props } = this;
 
     if (props.title && props.type === 'text') {
       return (
@@ -56,8 +57,8 @@ class Title extends Component {
 }
 
 class Content extends Component {
-  render = () => {
-    const { attrs } = this.props;
+  render() {
+    let { attrs } = this.props;
 
     let title;
     let content;
@@ -103,8 +104,8 @@ class Content extends Component {
 }
 
 class Article extends Component {
-  render = () => {
-    const { attrs } = this.props;
+  render() {
+    let { attrs } = this.props;
 
     return (
       <article id={attrs.id} className="article">
