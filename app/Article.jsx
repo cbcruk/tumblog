@@ -109,7 +109,10 @@ class Article extends Component {
 
     return (
       <article id={attrs.id} className="article">
-        <Title title={attrs.title} type={attrs.type} />
+        <Title
+          title={attrs.title}
+          type={attrs.type}
+        />
         <Content attrs={attrs} />
         <footer className="article__meta">
           <Source source={attrs.source_url} />
