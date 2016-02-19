@@ -6,10 +6,12 @@
   $remSize: $size / 16px;
   @return #{$remSize}rem;
 }
+
 @mixin fsize($size) {
   font-size: $size; //Fallback in px
   font-size: calculate-rem($size);
 }
+
 @mixin ellipsis() {
   overflow: hidden;
   white-space: nowrap;
@@ -21,8 +23,6 @@
 *:after {
   box-sizing: border-box;
 }
-
-html {}
 
 body {
   font-family: sans-serif;
@@ -138,8 +138,6 @@ blockquote {
 
   &:focus {outline: 0;}
 }
-
-.page {}
 
 .pagination {
   @include fsize(12px);
