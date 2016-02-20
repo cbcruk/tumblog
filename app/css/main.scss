@@ -218,6 +218,7 @@ blockquote {
   &__meta {
     @include fsize(12px);
   }
+  
   &__name {
     @include fsize(16px);
     background-color: transparent;
