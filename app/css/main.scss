@@ -230,9 +230,7 @@ blockquote {
     display: block;
     color: lighten(#000, 30%);
   }
-  &__excerpt {
-    margin-top: 1em;
-  }
+  &__excerpt {margin-top: 1em;}
 }
 
 .photo {
