@@ -212,7 +212,9 @@ blockquote {
     &:hover,
     &:focus {text-decoration: none;}
   }
+
   &__thumbnail {display: block;}
+
   &__meta {
     @include fsize(12px);
   }
