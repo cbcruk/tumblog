@@ -12,8 +12,8 @@ class Nav extends Component {
         role="navigation"
         aria-labelledby="paginglabel"
       >
-        <h2 className="sr-only">Page Navigation</h2>
-        
+        <h2 className="sr-only">Page Navigations</h2>
+
         <span className="pagination__count">{this.props.current} / {this.props.total}</span>
         {this.props.current !== 1 ? <button type="button" className="pagination__prev">이전 페이지</button> : ''}
         {this.props.current !== this.props.total ? <button type="button" className="pagination__next">다음 페이지</button> : ''}
