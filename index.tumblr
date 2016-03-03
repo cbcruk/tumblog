@@ -41,12 +41,7 @@
             <datalist id="postType">
               <option value="text">Text</option>
               <option value="photo">Photo</option>
-              <option value="quote">Quote</option>
               <option value="link">Link</option>
-              <option value="chat">Chat</option>
-              <option value="audio">Audio</option>
-              <option value="video">Video</option>
-              <option value="answer">Answer</option>
             </datalist>
           </label>
           <!-- <input type="submit" value="{lang:Search}" class="search__submit"> -->
