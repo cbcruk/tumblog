@@ -150,7 +150,6 @@
   {/block:IndexPage}
 
 
-
   {block:PermalinkPage}
     <aside class="aside">
       <div class="blog">
