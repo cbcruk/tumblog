@@ -3,14 +3,18 @@
 <head>
   <title>{Title}</title>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
   <meta charset="utf-8">
   {block:Description}
   <meta name="description" content="{MetaDescription}" />
   {/block:Description}
   <link rel="shortcut icon" href="{Favicon}">
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  <link rel="canonical" href="http://cbcruk.tumblr.com/" />
   <link rel="stylesheet" href="http://static.tumblr.com/7xvgw71/YBSnw3j24/main.css">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-custom>amp-img {background-color: #f4f4f4;}</style>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 <body>
 <body>
@@ -95,42 +99,19 @@
           </article>
           {/block:Text}
 
-          {block:Video}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="video">
-                {block:VideoThumbnail}
-                <div class="video__thumbnail">
-                  <img src="{VideoThumbnailURL}" alt="">
-                </div>
-                {/block:VideoThumbnail}
-              </div>
-
-              {block:Caption}
-              {Caption}
-              {/block:Caption}
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Video}
-
           {block:Photo}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="photo">
                 <figure class="photo__figure">
-                  <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
+                  <amp-img
+                    src="{PhotoURL-400}"
+                    srcset="{PhotoURL-400} 1x, {PhotoURL-HighRes} 2x"
+                    alt=""
+                    width="{PhotoWidth-400}"
+                    height="{PhotoHeight-400}"
+                    layout="fixed">
+                  </amp-img>
 
                   {block:Caption}
                   <figcaption class="photo__caption">{Caption}</figcaption>
@@ -152,73 +133,6 @@
             </footer>
           </article>
           {/block:Photo}
-
-          {block:Photoset}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="photo photo--set">
-                <figure class="photo__figure" data-count="{PhotoCount}">
-                  {block:Photos}
-                    <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
-                  {/block:Photos}
-
-                  {block:Caption}
-                  <figcaption class="photo__caption">{Caption}</figcaption>
-                  {/block:Caption}
-                </figure>
-              </div>
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Photoset}
-
-          {block:Link}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="link">
-                {block:Thumbnail}
-                  <img data-src={Thumbnail-HighRes} alt="" data-action="zoom" class="link__thumbnail" />
-                {/block:Thumbnail}
-                <a href="{URL}" {Target} class="link__box">
-                  <div class="link__meta">
-                    <strong class="link__name">{Name}</strong>
-                    <span class="link__host">{block:Host}{Host}{/block:Host}</span>
-                    {block:Excerpt}
-                      <p class="link__excerpt">{Excerpt}</p>
-                    {/block:Excerpt}
-                  </div>
-                </a>
-              </div>
-
-              {block:Description}
-                {Description}
-              {/block:Description}
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Link}
         {/block:Posts}
       </div>
 
@@ -302,42 +216,25 @@
           </article>
           {/block:Text}
 
-          {block:Video}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="video">
-                {block:VideoThumbnail}
-                <div class="video__thumbnail">
-                  <img src="{VideoThumbnailURL}" alt="">
-                </div>
-                {/block:VideoThumbnail}
-              </div>
-
-              {block:Caption}
-              {Caption}
-              {/block:Caption}
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Video}
-
           {block:Photo}
           <article id="post_{PostID}" class="article">
             <div class="article__content">
               <div class="photo">
                 <figure class="photo__figure">
-                  <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
+                  <figure class="photo__figure">
+                    <amp-img
+                      src="{PhotoURL-400}"
+                      srcset="{PhotoURL-400} 1x, {PhotoURL-HighRes} 2x"
+                      alt=""
+                      width="{PhotoWidth-400}"
+                      height="{PhotoHeight-400}"
+                      layout="fixed">
+                    </amp-img>
+
+                    {block:Caption}
+                    <figcaption class="photo__caption">{Caption}</figcaption>
+                    {/block:Caption}
+                  </figure>
 
                   {block:Caption}
                   <figcaption class="photo__caption">{Caption}</figcaption>
@@ -359,73 +256,6 @@
             </footer>
           </article>
           {/block:Photo}
-
-          {block:Photoset}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="photo photo--set">
-                <figure class="photo__figure" data-count="{PhotoCount}">
-                  {block:Photos}
-                    <img data-src="{PhotoURL-HighRes}" alt="" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-action="zoom">
-                  {/block:Photos}
-
-                  {block:Caption}
-                  <figcaption class="photo__caption">{Caption}</figcaption>
-                  {/block:Caption}
-                </figure>
-              </div>
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Photoset}
-
-          {block:Link}
-          <article id="post_{PostID}" class="article">
-            <div class="article__content">
-              <div class="link">
-                {block:Thumbnail}
-                  <img data-src={Thumbnail-HighRes} alt="" data-action="zoom" class="link__thumbnail" />
-                {/block:Thumbnail}
-                <a href="{URL}" {Target} class="link__box">
-                  <div class="link__meta">
-                    <strong class="link__name">{Name}</strong>
-                    <span class="link__host">{block:Host}{Host}{/block:Host}</span>
-                    {block:Excerpt}
-                      <p class="link__excerpt">{Excerpt}</p>
-                    {/block:Excerpt}
-                  </div>
-                </a>
-              </div>
-
-              {block:Description}
-                {Description}
-              {/block:Description}
-            </div>
-
-            <footer class="article__meta">
-              {block:ContentSource}
-              <p class="article__meta__item article__meta__item--source">
-                <q cite="{SourceURL}"><a href="{SourceURL}" {Target}>{SourceURL}</a></q>
-              </p>
-              {/block:ContentSource}
-
-              {block:NoteCount}
-              <p class="article__meta__item article__meta__item--note">{lang:This post has NoteCount notes}</p>
-              {/block:NoteCount}
-            </footer>
-          </article>
-          {/block:Link}
         {/block:Posts}
       </div>
 
@@ -446,7 +276,6 @@
     </main>
   {/block:PermalinkPage}
 
-<script src="http://static.tumblr.com/7xvgw71/rcvnw3j2z/vendor.min.js"></script>
 </body>
 </body>
 </html>
