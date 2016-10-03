@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Article from './Article.jsx';
 
-class Index extends Component {
+class Page extends Component {
   render() {
     let { posts, filterText } = this.props;
 
@@ -29,4 +29,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default Page;

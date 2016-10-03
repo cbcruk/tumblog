@@ -1,6 +1,4 @@
 @import "normalize";
-@import "zoom";
-@import "awesomplete";
 
 @function calculate-rem($size) {
   $remSize: $size / 16px;
@@ -218,7 +216,7 @@ blockquote {
   &__meta {
     @include fsize(12px);
   }
-  
+
   &__name {
     @include fsize(16px);
     background-color: transparent;

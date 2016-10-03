@@ -7,7 +7,7 @@ class Photo extends Component {
     return (
       <div className="photo">
         <figure className="photo__figure">
-          <img data-src={photos.url} alt="" width={photos.width} height={photos.height} data-action="zoom" />
+          <img src={photos.url} alt="" width={photos.width} height={photos.height} />
           <figcaption className="photo__caption" dangerouslySetInnerHTML={{__html: caption}} />
         </figure>
       </div>
@@ -35,7 +35,7 @@ class Links extends Component {
       <div className="link">
         {
           photos &&
-          <img data-src={photos[0].original_size.url} alt="" width={photos[0].original_size.width} height={photos[0].original_size.height} data-action="zoom" className="link__thumbnail" />
+          <img src={photos[0].original_size.url} alt="" width={photos[0].original_size.width} height={photos[0].original_size.height} className="link__thumbnail" />
         }
         <a href={url} className="link__box">
           <div className="link__meta">
