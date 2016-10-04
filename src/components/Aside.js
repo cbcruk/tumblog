@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { POST_TYPE } from '../constant';
+import FilterNav from './FilterNav';
 import './Aside.css';
 
 const Aside = ({ blog }) => (
@@ -18,12 +18,7 @@ const Aside = ({ blog }) => (
       <li className="category__item"><a href="/archive">Archive</a></li>
     </ul>
 
-    <div className="search">
-      {
-        POST_TYPE.map((value, index) =>
-          <Link to={value.toLowerCase()} key={index}>{value}</Link>)
-      }
-    </div>
+    <FilterNav />
 
     <p className="copyright">2010–2015</p>
   </aside>

@@ -35,12 +35,13 @@ const receiveBlog = (blog) => ({
   blog,
 });
 
-const fetchPosts = (tumblr) => (dispatch) => {
+const fetchPosts = (tumblr) => (dispatch, getState) => {
   const param = {
     api_key: API_KEY,
     offset: 0,
     limit: 3,
   };
+  const stateBlog = getState().postsByTumblr.blog;
 
   dispatch(requestPosts(tumblr));
 
@@ -52,8 +53,10 @@ const fetchPosts = (tumblr) => (dispatch) => {
     cache: false
   })
     .then(data => {
+      if (Object.keys(stateBlog).length === 2) {
+        dispatch(receiveBlog(data.response.blog));
+      }
       dispatch(receivePosts(tumblr, data.response.posts));
-      dispatch(receiveBlog(data.response.blog));
     })
     .fail(error => {
       console.error(`AJAX ERROR: ${error}`);

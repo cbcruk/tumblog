@@ -7,30 +7,33 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     const { dispatch, params } = this.props;
-    const type = params.type || 'all';
+    const filter = params.filter || 'all';
 
-    dispatch(selectTumblr(type));
-    dispatch(fetchPostsIfNeeded(type));
+    dispatch(selectTumblr(filter));
+    dispatch(fetchPostsIfNeeded(filter));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.type !== this.props.params.type) {
+    if (nextProps.params.filter !== this.props.params.filter) {
       const { dispatch, params } = nextProps;
-      dispatch(selectTumblr(params.type || 'all'));
-    }
+      const filter = params.filter || 'all';
 
-    if (nextProps.selectedTumblr !== this.props.selectedTumblr) {
-      const { dispatch, params } = nextProps;
-      dispatch(fetchPostsIfNeeded(params.type));
+      dispatch(selectTumblr(filter));
+      dispatch(fetchPostsIfNeeded(filter));
     }
   }
 
   render() {
-    const { blog } = this.props;
+    const { blog, isFetching } = this.props;
 
     return (
       <div className="App">
         <Aside blog={blog} />
+        <p>
+          {
+            isFetching ? 'Loading...' : ''
+          }
+        </p>
       </div>
     );
   }
@@ -43,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
     isFetching,
     lastUpdated,
     items: posts
-  } = postsByTumblr[selectedTumblr || ownProps.params.type] || {
+  } = postsByTumblr[selectedTumblr || ownProps.params.filter] || {
     isFetching: true,
     items: []
   };

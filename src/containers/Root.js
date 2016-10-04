@@ -4,7 +4,7 @@ import App from './App';
 
 const Root = () => (
   <Router history={browserHistory}>
-    <Route path="/(:type)" component={App} />
+    <Route path="/(:filter)" component={App} />
   </Router>
 );
 
