@@ -1,12 +1,14 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import { POST_TYPE } from '../constant';
 import './Aside.css';
 
-const Aside = ({ blog, types }) => (
+const Aside = ({ blog }) => (
   <aside id="aside" className="Aside">
     <div className="blog">
-      <h1 className="blog__title"><a href="/">{blog.title}</a></h1>
+      <h1 className="blog__title">
+        <Link to="/">{blog.title}</Link>
+      </h1>
       <p className="blog__desc">{blog.description}</p>
     </div>
 
@@ -17,26 +19,10 @@ const Aside = ({ blog, types }) => (
     </ul>
 
     <div className="search">
-      <label htmlFor="search" className="sr-only">
-        Search
-        <input
-          type="search"
-          id="search"
-          placeholder="Search Post Type"
-          onChange={(e) => {
-            browserHistory.push(e.target.value);
-          }}
-          list="postType"
-          className="search__input"
-        />
-        <datalist id="postType">
-          {
-            POST_TYPE.map((value, index) => {
-              return <option value={value.toLowerCase()} key={index}>{value}</option>;
-            })
-          }
-        </datalist>
-      </label>
+      {
+        POST_TYPE.map((value, index) =>
+          <Link to={value.toLowerCase()} key={index}>{value}</Link>)
+      }
     </div>
 
     <p className="copyright">2010–2015</p>
