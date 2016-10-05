@@ -1,58 +1,58 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectTumblr, fetchPostsIfNeeded } from '../actions';
+import { fetchPostsIfNeeded } from '../actions';
+
 import Aside from '../components/Aside';
+import Page from './Page';
+
 import './App.css';
 
 class App extends Component {
   componentDidMount() {
     const { dispatch, params } = this.props;
-    const filter = params.filter || 'all';
+    const filter = params.filter;
 
-    dispatch(selectTumblr(filter));
     dispatch(fetchPostsIfNeeded(filter));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.filter !== this.props.params.filter) {
       const { dispatch, params } = nextProps;
-      const filter = params.filter || 'all';
+      const filter = params.filter;
 
-      dispatch(selectTumblr(filter));
       dispatch(fetchPostsIfNeeded(filter));
     }
   }
 
   render() {
-    const { blog, isFetching } = this.props;
+    const { blog, posts, isFetching } = this.props;
 
     return (
       <div className="App">
         <Aside blog={blog} />
-        <p>
-          {
-            isFetching ? 'Loading...' : ''
-          }
-        </p>
+        <Page posts={posts} />
+        <p>{isFetching ? 'Loading...' : ''}</p>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { selectedTumblr, postsByTumblr } = state;
+  const { postsByTumblr } = state;
   const { blog } = postsByTumblr;
   const {
     isFetching,
     lastUpdated,
     items: posts
-  } = postsByTumblr[selectedTumblr || ownProps.params.filter] || {
+  } = postsByTumblr[ownProps.params.filter || 'all'] || {
     isFetching: true,
-    items: []
+    items: {
+      entities: {},
+      result: []
+    },
   };
 
   return {
-    selectedTumblr,
     blog,
     posts,
     isFetching,

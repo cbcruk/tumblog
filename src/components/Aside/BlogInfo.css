@@ -1,0 +1,16 @@
+.BlogInfo-title {
+  margin: 0;
+  font-size: 26px;
+}
+
+.BlogInfo-title > a {
+  padding-bottom: 1rem;
+}
+
+.BlogInfo-title > a:hover {
+  text-decoration: none;
+}
+
+.BlogInfo-desc {
+  margin: 0;
+}

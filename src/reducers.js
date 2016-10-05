@@ -1,25 +1,18 @@
 import { combineReducers } from 'redux';
 import {
   INVALIDATE_TUMBLR,
-  SELECT_TUMBLR,
   RECEIVE_POSTS,
   REQUEST_POSTS,
   RECEIVE_BLOG,
 } from './actions';
 
-const selectedTumblr = (state = 'all', action) => {
-  switch (action.type) {
-    case SELECT_TUMBLR:
-      return action.tumblr;
-    default:
-      return state;
-  }
-};
-
 const posts = (state = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  items: {
+    entities: {},
+    result: []
+  }
 }, action) => {
   switch (action.type) {
     case INVALIDATE_TUMBLR:
@@ -46,19 +39,22 @@ const posts = (state = {
   }
 };
 
-const postsByTumblr = (state = {
+const getInitialState = {
   blog: {
-    title: 'Cherry Orchard',
-    description: '은수리의 기묘한 모험',
+    title: '',
+    description: '',
+    updated: 0
   }
-}, action) => {
+};
+
+const postsByTumblr = (state = getInitialState, action) => {
   switch (action.type) {
     case INVALIDATE_TUMBLR:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return {
         ...state,
-        [action.tumblr]: posts(state[action.tumblr], action)
+        [action.tumblr || 'all']: posts(state[action.tumblr], action)
       };
     case RECEIVE_BLOG:
       return {
@@ -72,7 +68,6 @@ const postsByTumblr = (state = {
 
 const rootReducer = combineReducers({
   postsByTumblr,
-  selectedTumblr,
 });
 
 export default rootReducer;

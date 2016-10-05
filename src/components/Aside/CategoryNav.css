@@ -1,0 +1,17 @@
+.CategoryNav {
+  padding-left: 0;
+  list-style: none;
+}
+
+.CategoryNav > li {
+  display: inline-block;
+}
+
+.CategoryNav > li + li {
+  margin-left: 5px;
+}
+
+.CategoryNav-item:hover {
+  border-bottom: 1px solid #ff80ab;
+  text-decoration: none;
+}

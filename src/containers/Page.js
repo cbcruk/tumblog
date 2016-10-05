@@ -1,32 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Article from './Article.jsx';
+import Article from '../components/Article';
 
-class Page extends Component {
-  render() {
-    let { posts, filterText } = this.props;
+const Page = ({ posts }) => {
+  const { entities, result } = posts;
 
-    return (
-      <div id="page" className="page page--index">
-        {
-          posts.map((post, index) => {
-            let props = {
-              key: index,
-              attrs: post
-            };
-
-            if (post.type.indexOf(filterText) === -1) {
-              return false;
-            } else {
-              return (
-                <Article {...props} />
-              );
-            }
-          })
-        }
-      </div>
-    );
-  }
-}
+  return (
+    <div id="page" className="Page Page--index">
+      {
+        result.map(id => <Article key={id} attrs={entities.posts[id]} />)
+      }
+    </div>
+  );
+};
 
 export default Page;

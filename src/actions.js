@@ -1,5 +1,6 @@
-import { ajax } from 'jquery';
-import { API_URL, API_KEY } from './constant';
+import { normalize } from 'normalizr';
+import * as api from './api';
+import * as schema from './schema';
 
 export const INVALIDATE_TUMBLR = 'INVALIDATE_TUMBLR';
 export const SELECT_TUMBLR = 'SELECT_TUMBLR';
@@ -8,12 +9,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_BLOG = 'REQUEST_BLOG';
 export const RECEIVE_BLOG = 'RECEIVE_BLOG';
 
-export const selectTumblr = (tumblr) => ({
-  type: SELECT_TUMBLR,
-  tumblr
-});
-
-export const invalidateReddit = (tumblr) => ({
+export const invalidateTumblr = (tumblr) => ({
   type: INVALIDATE_TUMBLR,
   tumblr
 });
@@ -36,30 +32,20 @@ const receiveBlog = (blog) => ({
 });
 
 const fetchPosts = (tumblr) => (dispatch, getState) => {
-  const param = {
-    api_key: API_KEY,
-    offset: 0,
-    limit: 3,
-  };
   const stateBlog = getState().postsByTumblr.blog;
 
   dispatch(requestPosts(tumblr));
 
-  return ajax({
-    type: 'GET',
-    url: API_URL,
-    dataType: 'jsonp',
-    data: tumblr !== 'all' ? { ...param, type: tumblr } : param,
-    cache: false
-  })
+  api.fetchData(tumblr)
     .then(data => {
-      if (Object.keys(stateBlog).length === 2) {
+      dispatch(receivePosts(tumblr, normalize(data.response.posts, schema.arrayOfPosts)));
+      if (Object.keys(stateBlog).length === 3) {
         dispatch(receiveBlog(data.response.blog));
       }
-      dispatch(receivePosts(tumblr, data.response.posts));
     })
     .fail(error => {
-      console.error(`AJAX ERROR: ${error}`);
+      console.error('AJAX ERROR');
+      console.error(error);
     });
 };
 
