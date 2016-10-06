@@ -4,7 +4,11 @@ import App from './App';
 
 const Root = () => (
   <Router history={browserHistory}>
-    <Route path="/(:filter)" component={App} />
+    <Route path="/" component={App}>
+      <Route path="category/(:filter)">
+        <Route path=":id" />
+      </Route>
+    </Route>
   </Router>
 );
 

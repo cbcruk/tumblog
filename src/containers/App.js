@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPostsIfNeeded } from '../actions';
 
 import Aside from '../components/Aside';
+import Permal from './Permal';
 import Page from './Page';
 
 import './App.css';
@@ -25,12 +26,17 @@ class App extends Component {
   }
 
   render() {
-    const { blog, posts, isFetching } = this.props;
+    const { blog, posts, isFetching, params } = this.props;
+    const permal = posts.entities.posts;
 
     return (
       <div className="App">
         <Aside blog={blog} />
-        <Page posts={posts} />
+        {
+          params.id
+          ? <Permal attrs={permal && permal[params.id]} />
+          : <Page posts={posts} />
+        }
         <p>{isFetching ? 'Loading...' : ''}</p>
       </div>
     );
