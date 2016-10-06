@@ -31,25 +31,27 @@ const receiveBlog = (blog) => ({
   blog,
 });
 
-const fetchPosts = (tumblr) => (dispatch, getState) => {
+const fetchPosts = (tumblr, offset = 0) => (dispatch, getState) => {
   const stateBlog = getState().postsByTumblr.blog;
 
   dispatch(requestPosts(tumblr));
 
-  api.fetchData(tumblr)
+  api.fetchData({
+    type: tumblr,
+    offset
+  })
     .then(data => {
       dispatch(receivePosts(tumblr, normalize(data.response.posts, schema.arrayOfPosts)));
       if (Object.keys(stateBlog).length === 3) {
         dispatch(receiveBlog(data.response.blog));
       }
     })
-    .fail(error => {
-      console.error('AJAX ERROR');
+    .catch(error => {
       console.error(error);
     });
 };
 
-const shouldFetchPosts = (state, tumblr) => {
+const shouldFetchPosts = (state, tumblr = 'all') => {
   const posts = state.postsByTumblr[tumblr];
 
   if (!posts) {
