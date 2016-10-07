@@ -5,9 +5,8 @@ import App from './App';
 const Root = () => (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="category/(:filter)">
-        <Route path=":id" />
-      </Route>
+      <Route path="search/(:search)" />
+      <Route path="page/(:page)" />
     </Route>
   </Router>
 );

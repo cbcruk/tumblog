@@ -5,7 +5,7 @@ import './BlogInfo.css';
 const BlogInfo = ({ title, description }) => (
   <div className="BlogInfo">
     <h1 className="BlogInfo-title">
-      <Link to="">{title}</Link>
+      <Link to="/">{title}</Link>
     </h1>
     <p className="BlogInfo-desc">{description}</p>
   </div>

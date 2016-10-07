@@ -8,6 +8,8 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_BLOG = 'REQUEST_BLOG';
 export const RECEIVE_BLOG = 'RECEIVE_BLOG';
+export const RECEIVE_TOTAL = 'RECEIVE_TOTAL';
+export const FETCH_PAGE_COUNT = 'FETCH_PAGE_COUNT';
 
 export const invalidateTumblr = (tumblr) => ({
   type: INVALIDATE_TUMBLR,
@@ -31,7 +33,17 @@ const receiveBlog = (blog) => ({
   blog,
 });
 
-const fetchPosts = (tumblr, offset = 0) => (dispatch, getState) => {
+const receiveTotal = (total) => ({
+  type: RECEIVE_TOTAL,
+  total,
+});
+
+export const fetchPageCount = (current) => ({
+  type: FETCH_PAGE_COUNT,
+  current
+});
+
+export const fetchPosts = (tumblr, offset = 0) => (dispatch, getState) => {
   const stateBlog = getState().postsByTumblr.blog;
 
   dispatch(requestPosts(tumblr));
@@ -41,9 +53,13 @@ const fetchPosts = (tumblr, offset = 0) => (dispatch, getState) => {
     offset
   })
     .then(data => {
-      dispatch(receivePosts(tumblr, normalize(data.response.posts, schema.arrayOfPosts)));
+      const { posts, total_posts, blog } = data.response;
+
+      dispatch(receivePosts(tumblr, normalize(posts, schema.arrayOfPosts)));
+      dispatch(receiveTotal(total_posts));
+
       if (Object.keys(stateBlog).length === 3) {
-        dispatch(receiveBlog(data.response.blog));
+        dispatch(receiveBlog(blog));
       }
     })
     .catch(error => {

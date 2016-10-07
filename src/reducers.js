@@ -4,6 +4,8 @@ import {
   RECEIVE_POSTS,
   REQUEST_POSTS,
   RECEIVE_BLOG,
+  RECEIVE_TOTAL,
+  FETCH_PAGE_COUNT,
 } from './actions';
 
 const posts = (state = {
@@ -35,7 +37,7 @@ const posts = (state = {
         lastUpdated: action.receivedAt
       };
     default:
-      return state
+      return state;
   }
 };
 
@@ -44,7 +46,8 @@ const getInitialState = {
     title: '',
     description: '',
     updated: 0
-  }
+  },
+  total: 0
 };
 
 const postsByTumblr = (state = getInitialState, action) => {
@@ -61,13 +64,28 @@ const postsByTumblr = (state = getInitialState, action) => {
         ...state,
         blog: action.blog
       };
+    case RECEIVE_TOTAL:
+      return {
+        ...state,
+        total: action.total
+      };
     default:
       return state;
   }
 };
 
+const pageCount = (state = 0, action) => {
+  switch (action.type) {
+    case FETCH_PAGE_COUNT:
+      return action.current;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   postsByTumblr,
+  pageCount
 });
 
 export default rootReducer;

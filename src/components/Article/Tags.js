@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Tags.css';
+
 const Tags = ({ tags }) => {
   if (!tags.length) {
     return null;

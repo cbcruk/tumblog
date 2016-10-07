@@ -1,5 +1,6 @@
 .Aside {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: table-cell;
+  width: 178px;
+  padding: 1em;
+  vertical-align: top;
 }

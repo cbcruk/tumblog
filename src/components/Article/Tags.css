@@ -1,0 +1,7 @@
+.Tags-item:hover {
+  text-decoration: underline;
+}
+
+.Tags-item + .Tags-item {
+  margin-left: 5px;
+}

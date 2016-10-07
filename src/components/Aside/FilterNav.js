@@ -10,7 +10,7 @@ const FilterNav = ({ type }) => (
         return (
           <Link
             key={index}
-            to={`/category/${value.toLowerCase()}`}
+            to={`/search/${value.toLowerCase()}`}
             className="FilterNav-item"
           >{value}</Link>
         );

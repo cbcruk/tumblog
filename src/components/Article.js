@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { Title, Content, Source } from './Article/';
+
+import './Article.css';
 
 const Article = ({ attrs }) => {
   return (
     <article id={attrs.id} className="Article">
-      <Link to={`/category/${attrs.type}/${attrs.id}`}>Permal Link</Link>
       {
         attrs.title
         ? <Title title={attrs.title} />
@@ -14,7 +14,7 @@ const Article = ({ attrs }) => {
 
       <Content attrs={attrs} />
 
-      <footer className="article__meta">
+      <footer className="Article-meta">
         {
           attrs.source_url
           ? <Source source={attrs.source_url} />
