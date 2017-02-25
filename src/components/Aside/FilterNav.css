@@ -1,9 +1,0 @@
-.FilterNav {}
-
-.FilterNav-item {
-  font-size: 12px;
-}
-
-.FilterNav-item + .FilterNav-item {
-  margin-left: .5em;
-}
