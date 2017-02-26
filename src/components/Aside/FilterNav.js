@@ -1,22 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import './FilterNav.css';
+const StyledFilterNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  font-size: ${12/16}rem;
+`;
 
 const FilterNav = ({ type }) => (
-  <div className="FilterNav">
+  <StyledFilterNav>
     {
       type.map((value, index) => {
         return (
           <Link
             key={index}
             to={`/search/${value.toLowerCase()}`}
-            className="FilterNav-item"
-          >{value}</Link>
+          >
+            {value}
+          </Link>
         );
       })
     }
-  </div>
+  </StyledFilterNav>
 );
 FilterNav.propTypes = {
   type: React.PropTypes.array.isRequired

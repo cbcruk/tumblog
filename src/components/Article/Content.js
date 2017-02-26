@@ -12,11 +12,7 @@ const Content = ({ attrs }) => {
     default: content = null;
   }
 
-  return (
-    <div className="article__content">
-      {content}
-    </div>
-  );
+  return content;
 };
 
 export default Content;

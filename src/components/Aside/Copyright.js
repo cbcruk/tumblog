@@ -1,12 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
 
-import './Copyright.css';
+const StyledCopyright = styled.p`
+  margin-top: ${50/16}rem;
+  font-size: ${12/16}rem;
+  font-style: italic;
+`;
 
 const Copyright = ({ updated }) => (
-  <p className="Copyright">
+  <StyledCopyright>
     2010–{moment.unix(updated).clone().year()}
-  </p>
+  </StyledCopyright>
 );
 Copyright.propTypes = {
   updated: React.PropTypes.number

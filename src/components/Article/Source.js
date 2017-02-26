@@ -1,11 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Source = ({ source }) => (
-  <p className="article__meta__item article__meta__item--source">
-    <q cite={source}>
-      <a href="{source}">{source}</a>
-    </q>
-  </p>
+const StyledSource = styled.p`
+  word-break: break-all;
+`;
+
+const Source = ({ title, url }) => (
+  <StyledSource>
+    출처: <a href={url} target="_blank">{title}</a>
+  </StyledSource>
 );
 
 export default Source;

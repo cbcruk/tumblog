@@ -1,18 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import './CategoryNav.css'
+const StyledCategoryNav = styled.nav`
+  display: ${props => props.isShow ? 'block': 'none'};
+  padding-left: 0;
+  list-style: none;
+`;
+
+const Item = styled.a`
+  display: inline-block;
+
+  &:hover {
+    border-bottom: 1px solid #ff80ab;
+    text-decoration: none;
+  }
+`;
 
 const CategoryNav = ({ isShow }) => (
-  <ul
-    className="CategoryNav"
-    style={{
-      display: isShow ? 'block' : 'none'
-    }}
-  >
-    <li><a href="/about" className="CategoryNav-item">About</a></li>
-    <li><a href="/ask" className="CategoryNav-item">Ask</a></li>
-    <li><a href="/archive" className="CategoryNav-item">Archive</a></li>
-  </ul>
+  <StyledCategoryNav>
+    <Item href="/about">About</Item>
+    <Item href="/ask">Ask</Item>
+    <Item href="/archive">Archive</Item>
+  </StyledCategoryNav>
 );
 CategoryNav.propTypes = {
   isShow: React.PropTypes.bool,

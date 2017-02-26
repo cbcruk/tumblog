@@ -1,6 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import './Tags.css';
+const StyledTags = styled.p`
+  display: flex;
+`;
+
+const Item = styled.span`
+  text-decoration: underline;
+`;
 
 const Tags = ({ tags }) => {
   if (!tags.length) {
@@ -8,15 +15,11 @@ const Tags = ({ tags }) => {
   }
 
   return (
-    <p className="article__meta__item article__meta__item--tags">
+    <StyledTags>
       {
-        tags.map(tag => {
-          return (
-            <span className="tags__item">#{tag}</span>
-          );
-        })
+        tags.map(tag => <Item>#{tag}</Item>)
       }
-    </p>
+    </StyledTags>
   );
 };
 

@@ -1,13 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router';
-import './BlogInfo.css';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  margin: 0;
+  font-size: ${48/16}rem;
+  font-weight: lighter;
+
+  > a {
+    padding-bottom: ${16/16}rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`;
+
+const Desc = styled.p`
+  margin: 0;
+  font-size: ${12/16}rem;
+  line-height: ${32/16}rem;
+`;
 
 const BlogInfo = ({ title, description }) => (
   <div className="BlogInfo">
-    <h1 className="BlogInfo-title">
+    <Title>
       <Link to="/">{title}</Link>
-    </h1>
-    <p className="BlogInfo-desc">{description}</p>
+    </Title>
+
+    <Desc>{description}</Desc>
   </div>
 );
 BlogInfo.propTypes = {

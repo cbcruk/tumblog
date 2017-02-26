@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { fetchPosts, fetchPostsIfNeeded, fetchPageCount } from '../actions';
 
 import Page from './Page';
 import Aside from '../components/Aside';
 import Pagination from '../components/Pagination';
 
-import './App.css';
-import './App-reset.css';
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 class App extends Component {
   componentDidMount() {
@@ -28,7 +31,6 @@ class App extends Component {
     }
 
     if (nextProps.params.page !== this.props.params.page) {
-      console.log('nextProps.params.page !== this.props.params.page');
       this.fetchPageCount(page || 0);
     }
   }
@@ -50,7 +52,7 @@ class App extends Component {
     const { blog, posts, total, isFetching, params } = this.props;
 
     return (
-      <div className="App">
+      <StyledApp>
         <Aside blog={blog} />
         <Page posts={posts} />
         {
@@ -58,8 +60,12 @@ class App extends Component {
           ? null
           : <Pagination total={total} />
         }
-        <p>{isFetching ? 'Loading...' : ''}</p>
-      </div>
+        {
+          isFetching
+          ? <p style={{ margin: 12, fontSize: 24, textAlign: 'center' }}>🐶🐶🐶</p>
+          : null
+        }
+      </StyledApp>
     );
   }
 }

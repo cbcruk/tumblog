@@ -1,28 +1,36 @@
 import React from 'react';
-import { Title, Content, Source } from './Article/';
+import styled from 'styled-components';
+import { Title, Source, Content } from './Article/';
 
-import './Article.css';
+const StyledArticle = styled.article`
+  font-size: ${11/16}rem;
 
-const Article = ({ attrs }) => {
-  return (
-    <article id={attrs.id} className="Article">
+  & + & { margin-top: ${20/16}rem; }
+`;
+
+const Footer = styled.footer`
+  margin-top: ${8/16}rem;
+  color: rgba(0, 0, 0, .4);
+`;
+
+const Article = ({ attrs }) => (
+  <StyledArticle id={attrs.id}>
+    {
+      attrs.title
+      ? <Title title={attrs.title} />
+      : null
+    }
+
+    <Content attrs={attrs} />
+
+    <Footer>
       {
-        attrs.title
-        ? <Title title={attrs.title} />
+        (attrs.source_title && attrs.source_url)
+        ? <Source title={attrs.source_title} url={attrs.source_url} />
         : null
       }
-
-      <Content attrs={attrs} />
-
-      <footer className="Article-meta">
-        {
-          attrs.source_url
-          ? <Source source={attrs.source_url} />
-          : null
-        }
-      </footer>
-    </article>
-  )
-};
+    </Footer>
+  </StyledArticle>
+);
 
 export default Article;

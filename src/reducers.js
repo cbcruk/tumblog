@@ -41,16 +41,14 @@ const posts = (state = {
   }
 };
 
-const getInitialState = {
+const postsByTumblr = (state = {
   blog: {
     title: '',
     description: '',
     updated: 0
   },
   total: 0
-};
-
-const postsByTumblr = (state = getInitialState, action) => {
+}, action) => {
   switch (action.type) {
     case INVALIDATE_TUMBLR:
     case RECEIVE_POSTS:

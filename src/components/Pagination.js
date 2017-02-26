@@ -1,34 +1,46 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import './Pagination.css';
+const StyledPagination = styled.nav`
+  margin-top: 50px;
+  text-align: right;
+  font-size: 12px;
+`;
+
+const Count = styled.span`
+  float: left;
+`;
+
+const StyledLink = styled(Link)`
+  margin-left: ${props => props.dir === 'next' ? '16px' : 'auto'};
+`;
 
 const Pagination = ({ current, total }) => (
-  <nav
-    className="Pagination"
+  <StyledPagination
     role="navigation"
     aria-labelledby="paginglabel"
   >
-    <h2 className="sr-only">Page Navigations</h2>
+    <h2 hidden>Page Navigations</h2>
 
-    <span className="Pagination-count">{current + 1} / {total}</span>
+    <Count>{current + 1} / {total}</Count>
 
     {
       current > 0
-      ? <Link to={`/page/${current - 1}`} className="Pagination-link Pagination-link--prev">이전 페이지</Link>
+      ? <StyledLink to={`/page/${current - 1}`} dir="prev">← 이전 페이지</StyledLink>
       : null
     }
     {
       current < total
-      ? <Link to={`/page/${current + 1}`} className="Pagination-link Pagination-link--next">다음 페이지</Link>
+      ? <StyledLink to={`/page/${current + 1}`} dir="next">다음 페이지 →</StyledLink>
       : null
     }
-  </nav>
+  </StyledPagination>
 );
 
 const mapStateToProps = (state, ownProps) => ({
-  current: parseInt(state.pageCount, 0)
+  current: parseInt(state.pageCount, 10)
 });
 
 export default connect(mapStateToProps)(Pagination);

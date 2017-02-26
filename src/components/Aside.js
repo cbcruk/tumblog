@@ -1,16 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { BlogInfo, CategoryNav, FilterNav, Copyright } from './Aside/';
 
-import './Aside.css';
+const StyledAside = styled.aside``;
 
 const Aside = ({ blog }) => (
-  <aside id="aside" className="Aside">
+  <StyledAside>
     <BlogInfo title={blog.title} description={blog.description} />
     <CategoryNav isShow={false} />
     <FilterNav />
     <Copyright updated={blog.updated} />
-  </aside>
+  </StyledAside>
 );
 Aside.propTypes = {
   blog: React.PropTypes.object.isRequired
