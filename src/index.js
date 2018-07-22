@@ -1,18 +1,23 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { injectGlobal } from 'styled-components';
-import configureStore from './configureStore';
-import Root from './containers/Root';
-import 'normalize.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { injectGlobal } from 'styled-components'
+import configureStore from './store/configureStore'
+import rootSaga from './sagas'
+import { Home } from './pages'
+import ScrollToTop from './components/ScrollToTop'
 
-const store = configureStore();
+const store = configureStore()
+store.runSaga(rootSaga)
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
   *,
   *::before,
   *::after {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
   }
 
@@ -20,12 +25,7 @@ injectGlobal`
     font-family: sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #333;
-  }
-
-  body {
-    display: flex;
-    justify-content: center;
+    background-color: #eee;
   }
 
   a {
@@ -38,12 +38,21 @@ injectGlobal`
     }
   }
 
-  p { margin: 0; }
-`;
+  img {
+    vertical-align: top;
+  }
+`
 
-render(
+ReactDOM.render(
   <Provider store={store}>
-    <Root />
+    <Router>
+      <ScrollToTop>
+        <Switch>
+          <Route path="/page" component={Home} />
+          <Redirect to="/page/1" />
+        </Switch>
+      </ScrollToTop>
+    </Router>
   </Provider>,
   document.getElementById('root')
-);
+)

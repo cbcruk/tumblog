@@ -1,33 +1,20 @@
-const tumblrApi = '//api.tumblr.com/v2/blog/cbcruk.tumblr.com/posts';
-const tumblrApiKey = '9XQHE6avIyXZBtaiQw8sIG7eNE4Ejzk41cgY2THef9YZr4TuG7';
-const tumblrLimit = 3;
+import axios from 'axios'
 
-function removeScript(script) {
-  document.body.removeChild(script);
-}
+const API_URL = 'https://api.tumblr.com/v2/blog/cbcruk.tumblr.com'
+const API_KEY = '9XQHE6avIyXZBtaiQw8sIG7eNE4Ejzk41cgY2THef9YZr4TuG7'
 
-function removeFunction(jsonp) {
-  delete window[jsonp];
-}
+const instance = axios.create({
+  baseURL: API_URL
+})
 
-export const fetchData = (tumblr) =>
-  new Promise((resolve, reject) => {
-    const jsonp = 'jsonp' + (+new Date());
-    const script = document.createElement('script');
-    const param = Object.keys(tumblr).reduce((p, n) => {
-      const value = tumblr[n];
-      return p += value ? `&${n}=${value}` : '';
-    }, '');
+instance.interceptors.request.use(config => config)
 
-    script.src = `${tumblrApi}?callback=${jsonp}&api_key=${tumblrApiKey}&limit=${tumblrLimit}${param}`;
-    script.onerror = (error) => {
-      reject('SERVER ERROR');
-    };
-    document.body.appendChild(script);
+instance.interceptors.response.use(response => response)
 
-    window[jsonp] = (response) => {
-      resolve(response);
-      removeScript(script);
-      removeFunction(jsonp);
-    };
-  });
+export const GET = ({ endpoint, params }) =>
+  instance.get(endpoint, {
+    params: {
+      ...params,
+      api_key: API_KEY
+    }
+  })
