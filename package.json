@@ -10,21 +10,23 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "moment": "^2.15.1",
-    "normalize.css": "^5.0.0",
-    "normalizr": "^3.2.2",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^5.0.3",
-    "react-router": "^3.0.2",
-    "redux": "^3.6.0",
-    "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0",
-    "styled-components": "^1.4.3"
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
+    "lodash": "^4.17.10",
+    "lozad": "^1.5.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "react-scripts": "^0.9.1"
+    "gh-pages": "^1.2.0",
+    "react-scripts": "^1.1.4"
   },
   "homepage": "https://cbcruk.github.io/blog-tumblr"
 }

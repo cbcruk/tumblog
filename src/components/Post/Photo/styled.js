@@ -1,0 +1,10 @@
+import styled from 'styled-components'
+
+export const Image = styled.img`
+  width: 100%;
+  max-width: 100%;
+`
+
+export const Summary = styled.p`
+  padding: 20px;
+`
