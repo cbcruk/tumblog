@@ -1,17 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
-import configureStore from './store/configureStore'
-import rootSaga from './sagas'
-import { Home } from './pages'
 import ScrollToTop from './components/ScrollToTop'
+import { Home } from './pages'
+import rootSaga from './sagas'
+import configureStore from './store/configureStore'
 
 const store = configureStore()
 store.runSaga(rootSaga)
 
-/* eslint-disable no-unused-expressions */
+// tslint:disable-next-line
 injectGlobal`
   *,
   *::before,
@@ -54,5 +54,5 @@ ReactDOM.render(
       </ScrollToTop>
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root') as HTMLElement
 )

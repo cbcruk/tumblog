@@ -1,7 +1,10 @@
-import React from 'react'
-import Wrapper, { Tags, Source } from './styled'
+import { IPost } from '@/actions/types'
+import * as React from 'react'
+import Wrapper, { Source, Tags } from './styled'
 
-const Footer = ({ source_url, source_title, tags }) => {
+type Props = Pick<IPost, 'source_url' | 'source_title' | 'tags'>
+
+const Footer: React.SFC<Props> = ({ source_url, source_title, tags }) => {
   const hasSource = source_title && source_url
   const hasTags = tags.length > 0
 

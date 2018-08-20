@@ -1,7 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
+import { IFetchRequestAction } from '../actions/types'
 import { GET } from '../api'
 
-function* fetchPosts(action) {
+function* fetchPosts(action: IFetchRequestAction) {
   const {
     data: { response }
   } = yield call(GET, action.payload)

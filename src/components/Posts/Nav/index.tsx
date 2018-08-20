@@ -1,10 +1,13 @@
-import React from 'react'
+import { IApplicationState } from '@/reducers'
+import * as React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router'
 import { createSelector } from 'reselect'
 import Wrapper, { Button } from './styled'
 
-const Nav = ({ match, last }) => {
+const Nav: React.SFC<
+  RouteComponentProps<{ page: string }> & { last: number }
+> = ({ match, last }) => {
   const page = parseInt(match.params.page, 10) || 1
   const prev = page - 1
   const next = page + 1
@@ -27,11 +30,11 @@ const Nav = ({ match, last }) => {
 }
 
 const getLastPage = createSelector(
-  [state => state.posts.total_posts],
+  [(state: IApplicationState) => state.posts.total_posts],
   totalPosts => Math.floor(totalPosts / 5)
 )
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: IApplicationState) => ({
   last: getLastPage(state)
 })
 

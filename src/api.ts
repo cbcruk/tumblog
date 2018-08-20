@@ -11,7 +11,7 @@ instance.interceptors.request.use(config => config)
 
 instance.interceptors.response.use(response => response)
 
-export const GET = ({ endpoint, params }) =>
+export const GET = ({ endpoint, params }: { endpoint: string; params?: {} }) =>
   instance.get(endpoint, {
     params: {
       ...params,

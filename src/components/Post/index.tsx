@@ -1,10 +1,11 @@
-import React from 'react'
+import { IPost } from '@/actions/types'
+import * as React from 'react'
 import Footer from './Footer'
-import Wrapper from './styled'
-import Photo from './Photo'
 import Link from './Link'
+import Photo from './Photo'
+import Wrapper from './styled'
 
-const Post = ({
+const Post: React.SFC<IPost> = ({
   type,
   photos,
   summary,
