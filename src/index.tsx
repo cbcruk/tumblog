@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import ScrollToTop from './components/ScrollToTop'
 import { Home } from './pages'
 import rootSaga from './sagas'
@@ -11,8 +11,7 @@ import configureStore from './store/configureStore'
 const store = configureStore()
 store.runSaga(rootSaga)
 
-// tslint:disable-next-line
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   *,
   *::before,
   *::after {
@@ -51,6 +50,7 @@ ReactDOM.render(
           <Route path="/page" component={Home} />
           <Redirect to="/page/1" />
         </Switch>
+        <GlobalStyle />
       </ScrollToTop>
     </Router>
   </Provider>,
