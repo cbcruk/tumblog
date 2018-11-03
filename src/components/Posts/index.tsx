@@ -11,7 +11,7 @@ import Nav from './Nav'
 import Wrapper from './styled'
 
 type Props = IApplicationState['posts'] &
-  RouteComponentProps<{ page: number }> & {
+  RouteComponentProps<{ page: string }> & {
     fetchRequestPosts(payload: IFetchRequestAction['payload']): void
   }
 
@@ -33,9 +33,9 @@ class Posts extends React.Component<Props> {
   }
 
   public fetchItems() {
-    const { page } = this.props.match.params
+    const { page = '1' } = this.props.match.params
     const limit = 5
-    const offset = (page - 1) * limit
+    const offset = (parseInt(page, 10) - 1) * limit
 
     this.props.fetchRequestPosts({
       endpoint: 'posts',
