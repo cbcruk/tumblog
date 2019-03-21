@@ -1,43 +1,26 @@
 {
-  "name": "blog--tumblr",
-  "version": "0.0.1",
+  "name": "tumblr-vue",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "latest": "yarn upgrade-interactive --latest"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "classnames": "^2.2.6",
-    "date-fns": "^1.29.0",
+    "chroma-js": "^2.0.3",
     "lodash": "^4.17.11",
-    "lozad": "^1.6.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "3.1.0",
-    "redux": "^4.0.1",
-    "redux-saga": "^0.16.2",
-    "reselect": "^4.0.0",
-    "styled-components": "^4.0.3"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.6",
-    "@types/jest": "^23.3.9",
-    "@types/lodash": "^4.14.117",
-    "@types/lozad": "^1.1.0",
-    "@types/node": "^10.12.2",
-    "@types/react": "^16.4.18",
-    "@types/react-dom": "^16.0.9",
-    "@types/react-redux": "^6.0.9",
-    "@types/react-router-dom": "^4.3.1",
-    "@types/styled-components": "^4.0.3",
-    "gh-pages": "^2.0.1",
-    "typescript": "^3.1.6"
-  },
-  "homepage": "https://cbcruk.github.io/blog-tumblr"
+    "@vue/cli-plugin-babel": "^3.5.1",
+    "@vue/cli-plugin-eslint": "^3.5.1",
+    "@vue/cli-service": "^3.5.1",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.3",
+    "eslint-plugin-vue": "^5.2.2",
+    "vue-template-compiler": "^2.6.10"
+  }
 }
