@@ -1,4 +1,4 @@
-import { IPost } from '@/actions/types'
+import { IPost } from '../../../actions/types'
 import * as React from 'react'
 import Wrapper, { Source, Tags } from './styled'
 

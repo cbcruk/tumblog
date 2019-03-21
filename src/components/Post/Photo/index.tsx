@@ -1,4 +1,4 @@
-import { IPost } from '@/actions/types'
+import { IPost } from '../../../actions/types'
 import classNames from 'classnames'
 import * as React from 'react'
 import { Image, Summary } from './styled'

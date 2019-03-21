@@ -1,4 +1,4 @@
-import { IPost } from '@/actions/types'
+import { IPost } from '../../actions/types'
 import * as React from 'react'
 import Footer from './Footer'
 import Link from './Link'

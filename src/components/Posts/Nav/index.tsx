@@ -1,32 +1,37 @@
-import { IApplicationState } from '@/reducers'
+import { IApplicationState } from '../../../reducers'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import Wrapper, { Button } from './styled'
 
-const Nav: React.SFC<
-  RouteComponentProps<{ page: string }> & { last: number }
-> = ({ match, last }) => {
-  const page = parseInt(match.params.page, 10) || 1
-  const prev = page - 1
-  const next = page + 1
+type Props = RouteComponentProps<{ page: string }> & {
+  last: number
+}
 
-  return (
-    <Wrapper>
-      {prev ? (
-        <Button to={`/page/${prev}`} className="is-prev">
-          이전
-        </Button>
-      ) : null}
+class Nav extends React.Component<Props> {
+  render() {
+    const { match, last } = this.props
+    const page = parseInt(match.params.page, 10) || 1
+    const prev = page - 1
+    const next = page + 1
 
-      {last >= next ? (
-        <Button to={`/page/${next}`} className="is-next">
-          다음
-        </Button>
-      ) : null}
-    </Wrapper>
-  )
+    return (
+      <Wrapper>
+        {prev ? (
+          <Button to={`/page/${prev}`} className="is-prev">
+            이전
+          </Button>
+        ) : null}
+
+        {last >= next ? (
+          <Button to={`/page/${next}`} className="is-next">
+            다음
+          </Button>
+        ) : null}
+      </Wrapper>
+    )
+  }
 }
 
 const getLastPage = createSelector(
