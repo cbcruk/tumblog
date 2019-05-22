@@ -13,9 +13,5 @@ module Styles = {
     ]);
 };
 
-let component = ReasonReact.statelessComponent("Header");
-
-let make = _children => {
-  ...component,
-  render: _self => <div className=Styles.container />,
-};
+[@react.component]
+let make = () => <div className=Styles.container />;

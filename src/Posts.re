@@ -11,17 +11,14 @@ module Styles = {
     ]);
 };
 
-let component = ReasonReact.statelessComponent("Posts");
-
-let make = (~items: array(TumblrData.post), _children) => {
-  ...component,
-  render: _self =>
-    <div className=Styles.container>
-      {switch (items) {
-       | [||] => ReasonReact.null
-       | _ =>
-         Array.map(items, item => <Post key={string_of_int(item.id)} item />)
-         |> ReasonReact.array
-       }}
-    </div>,
+[@react.component]
+let make = (~items: array(TumblrData.post)) => {
+  <div className=Styles.container>
+    {switch (items) {
+     | [||] => React.null
+     | _ =>
+       Array.map(items, item => <Post key={string_of_int(item.id)} item />)
+       |> React.array
+     }}
+  </div>;
 };

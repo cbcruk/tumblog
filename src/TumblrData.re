@@ -20,9 +20,8 @@ type posts = {
 };
 
 module Decode = {
-  let photo = json => {
+  let photo = json =>
     Json.Decode.(json |> field("original_size", field("url", string)));
-  };
 
   let post = (json): post =>
     Json.Decode.{
@@ -55,15 +54,15 @@ let apiKey = "9XQHE6avIyXZBtaiQw8sIG7eNE4Ejzk41cgY2THef9YZr4TuG7";
 let tumblrUrl = page => {
   let query =
     stringify({
-      "offset": (int_of_string(page) - 1) * Constants.offset,
-      "limit": Constants.offset,
+      "offset": (int_of_string(page) - 1) * 5,
+      "limit": 5,
       "api_key": apiKey,
     });
 
   {j|$apiBaseUrl/posts?$query|j};
 };
 
-let fetchPosts = (page, callback) => {
+let fetchPosts = (page, callback) =>
   Js.Promise.(
     Fetch.fetch(tumblrUrl(page))
     |> then_(Fetch.Response.json)
@@ -79,4 +78,3 @@ let fetchPosts = (page, callback) => {
        )
     |> ignore
   );
-};

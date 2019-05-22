@@ -19,22 +19,18 @@ module Styles = {
     ]);
 };
 
-let component = ReasonReact.statelessComponent("Post");
+[@react.component]
+let make = (~item: TumblrData.post) => {
+  let photo = (item.photos[0], item.summary);
+  let link = (item.url, item.title, item.publisher, item.excerpt);
+  let footer = (item.source_title, item.source_url, item.tags);
 
-let make = (~item: TumblrData.post, _children) => {
-  ...component,
-  render: _self => {
-    let photo = (item.photos[0], item.summary);
-    let link = (item.url, item.title, item.publisher, item.excerpt);
-    let footer = (item.source_title, item.source_url, item.tags);
-
-    <div className=Styles.container>
-      {switch (item._type) {
-       | "photo" => <PostPhoto photo />
-       | "link" => <PostLink link />
-       | _ => ReasonReact.null
-       }}
-      <PostFooter footer />
-    </div>;
-  },
+  <div className=Styles.container>
+    {switch (item._type) {
+     | "photo" => <PostPhoto photo />
+     | "link" => <PostLink link />
+     | _ => React.null
+     }}
+    <PostFooter footer />
+  </div>;
 };
