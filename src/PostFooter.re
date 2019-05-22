@@ -21,32 +21,26 @@ module Styles = {
   let tag = style([]);
 };
 
-let component = ReasonReact.statelessComponent("PostFooter");
+[@react.component]
+let make = (~footer) => {
+  let (title, url, tags) = footer;
 
-let make = (~footer, _children) => {
-  ...component,
-  render: _self => {
-    let (title, url, tags) = footer;
-
-    <div className=Styles.container>
-      {switch (title, url) {
-       | (Some(title), url) =>
-         <div className=Styles.source>
-           {ReasonReact.string({j|출처: |j})}
-           <a href=url target="_blank" className=Styles.sourceLink>
-             {ReasonReact.string(title)}
-           </a>
-         </div>
-       | _ => ReasonReact.null
-       }}
-      <div className=Styles.tags>
-        {Array.map(tags, tag =>
-           <div key=tag className=Styles.tag>
-             {ReasonReact.string({j|#$tag|j})}
-           </div>
-         )
-         |> ReasonReact.array}
-      </div>
-    </div>;
-  },
+  <div className=Styles.container>
+    {switch (title, url) {
+     | (Some(title), url) =>
+       <div className=Styles.source>
+         {React.string({j|출처: |j})}
+         <a href=url target="_blank" className=Styles.sourceLink>
+           {React.string(title)}
+         </a>
+       </div>
+     | _ => React.null
+     }}
+    <div className=Styles.tags>
+      {Array.map(tags, tag =>
+         <div key=tag className=Styles.tag> {React.string({j|#$tag|j})} </div>
+       )
+       |> React.array}
+    </div>
+  </div>;
 };

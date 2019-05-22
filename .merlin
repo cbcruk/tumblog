@@ -1,8 +1,7 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
-FLG -open Whatever
-FLG -ppx '/Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-platform/lib/reactjs_jsx_ppx_2.exe'
-FLG -ppx /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-platform/lib/bsppx.exe
+FLG -open BlogTumblr
+FLG -ppx '/Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
 S /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-platform/lib/ocaml
 B /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -color always

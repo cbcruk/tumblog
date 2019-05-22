@@ -32,4 +32,3 @@ Css.insertRule(
 );
 
 ReactDOMRe.renderToElementWithId(<App />, "app");
-ReasonReact.Router.push("");

@@ -8,16 +8,12 @@ module Styles = {
   let summary = style([padding(px(20))]);
 };
 
-let component = ReasonReact.statelessComponent("PostPhoto");
+[@react.component]
+let make = (~photo) => {
+  let (src, summary) = photo;
 
-let make = (~photo, _children) => {
-  ...component,
-  render: _self => {
-    let (photo, summary) = photo;
-
-    <div className=Styles.container>
-      <img src=photo alt="" className=Styles.image />
-      <div className=Styles.summary> {ReasonReact.string(summary)} </div>
-    </div>;
-  },
+  <div className=Styles.container>
+    <img src alt="" className=Styles.image />
+    <div className=Styles.summary> {React.string(summary)} </div>
+  </div>;
 };

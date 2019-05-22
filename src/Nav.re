@@ -56,25 +56,22 @@ module Styles = {
     ]);
 };
 
-let component = ReasonReact.statelessComponent("Nav");
-
-let make = (~prev, ~next, ~last, _children) => {
-  ...component,
-  render: _self =>
-    <div className=Styles.container>
-      {switch (prev) {
-       | "0" => ReasonReact.null
-       | _ =>
-         <Link href={j|/page/$prev|j} className=Styles.buttonPrev>
-           {ReasonReact.string({j|이전|j})}
-         </Link>
-       }}
-      {switch (int_of_string(next) >= last) {
-       | false =>
-         <Link href={j|/page/$next|j} className=Styles.buttonNext>
-           {ReasonReact.string({j|다음|j})}
-         </Link>
-       | true => ReasonReact.null
-       }}
-    </div>,
+[@react.component]
+let make = (~prev, ~next, ~last) => {
+  <div className=Styles.container>
+    {switch (prev) {
+     | "0" => React.null
+     | _ =>
+       <Link href={j|/page/$prev|j} className=Styles.buttonPrev>
+         {React.string({j|이전|j})}
+       </Link>
+     }}
+    {switch (int_of_string(next) >= last) {
+     | false =>
+       <Link href={j|/page/$next|j} className=Styles.buttonNext>
+         {React.string({j|다음|j})}
+       </Link>
+     | true => React.null
+     }}
+  </div>;
 };
