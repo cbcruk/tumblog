@@ -30,17 +30,12 @@ let make = () => {
           posts => {
             dispatch(Navigate(page));
             dispatch(Loaded(posts));
-            %raw
-            "window.scrollTo(0, 0)";
           },
         )
-      | _ =>
-        TumblrData.fetchPosts("1", posts => {
-          dispatch(Loaded(posts));
-          %raw
-          "window.scrollTo(0, 0)";
-        })
+      | _ => TumblrData.fetchPosts("1", posts => dispatch(Loaded(posts)))
       };
+
+      Webapi.Dom.(Window.scrollTo(0.0, 0.0, window));
 
       Some(() => ());
     },
