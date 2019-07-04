@@ -37,7 +37,7 @@ let make = () => {
 
       Webapi.Dom.(Window.scrollTo(0.0, 0.0, window));
 
-      Some(() => ());
+      None;
     },
     [|url.path|],
   );
