@@ -14,6 +14,8 @@ S /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/@glennsl/bs-json/lib/o
 B /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/@glennsl/bs-json/lib/ocaml
 S /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-fetch/lib/ocaml
 B /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-fetch/lib/ocaml
+S /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-webapi/lib/ocaml
+B /Users/ieunsu/Documents/GitHub/blog-tumblr/node_modules/bs-webapi/lib/ocaml
 S src
 B lib/bs/src
 ####BSB GENERATED: NO EDIT}
