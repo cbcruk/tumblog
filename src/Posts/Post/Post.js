@@ -1,4 +1,3 @@
-import React from 'react'
 import Media from './Media'
 import Meta from './Meta'
 import Texts from './Texts'

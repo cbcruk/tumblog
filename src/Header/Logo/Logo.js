@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Logo() {
   return (
     <svg width={86} height={24} viewBox="0 0 86 24">

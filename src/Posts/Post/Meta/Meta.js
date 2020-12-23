@@ -1,4 +1,3 @@
-import React from 'react'
 import dayjs from 'dayjs'
 import { IconNote } from '../../../Icons'
 import styles from './style.module.css'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { IconClose, IconSearch } from '../../Icons'
 import useSearch from './hooks/useSearch'
 import styles from './style.module.css'
