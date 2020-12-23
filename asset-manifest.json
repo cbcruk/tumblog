@@ -1,11 +1,23 @@
 {
-  "main.js": "/blog-tumblr/static/js/main.3939dd31.chunk.js",
-  "main.js.map": "/blog-tumblr/static/js/main.3939dd31.chunk.js.map",
-  "runtime~main.js": "/blog-tumblr/static/js/runtime~main.dd771ce8.js",
-  "runtime~main.js.map": "/blog-tumblr/static/js/runtime~main.dd771ce8.js.map",
-  "static/js/2.0c6e83a1.chunk.js": "/blog-tumblr/static/js/2.0c6e83a1.chunk.js",
-  "static/js/2.0c6e83a1.chunk.js.map": "/blog-tumblr/static/js/2.0c6e83a1.chunk.js.map",
-  "index.html": "/blog-tumblr/index.html",
-  "precache-manifest.a5b1a20430f6f22fcadda7cae742bc1e.js": "/blog-tumblr/precache-manifest.a5b1a20430f6f22fcadda7cae742bc1e.js",
-  "service-worker.js": "/blog-tumblr/service-worker.js"
+  "files": {
+    "main.css": "/blog-tumblr/static/css/main.315ba0b8.chunk.css",
+    "main.js": "/blog-tumblr/static/js/main.27097bf4.chunk.js",
+    "main.js.map": "/blog-tumblr/static/js/main.27097bf4.chunk.js.map",
+    "runtime-main.js": "/blog-tumblr/static/js/runtime-main.8a2b82bf.js",
+    "runtime-main.js.map": "/blog-tumblr/static/js/runtime-main.8a2b82bf.js.map",
+    "static/css/2.679831fc.chunk.css": "/blog-tumblr/static/css/2.679831fc.chunk.css",
+    "static/js/2.59b1c898.chunk.js": "/blog-tumblr/static/js/2.59b1c898.chunk.js",
+    "static/js/2.59b1c898.chunk.js.map": "/blog-tumblr/static/js/2.59b1c898.chunk.js.map",
+    "index.html": "/blog-tumblr/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/blog-tumblr/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.315ba0b8.chunk.css.map": "/blog-tumblr/static/css/main.315ba0b8.chunk.css.map",
+    "static/js/2.59b1c898.chunk.js.LICENSE.txt": "/blog-tumblr/static/js/2.59b1c898.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8a2b82bf.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.59b1c898.chunk.js",
+    "static/css/main.315ba0b8.chunk.css",
+    "static/js/main.27097bf4.chunk.js"
+  ]
 }
