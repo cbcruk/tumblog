@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgb(255 255 255 / 0.65);
+}
+
+.link {
+  color: inherit;
+}
+
+.link + .link {
+  margin-left: 10px;
+}
+
+.link:global(.is-next) {
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 1em;
+  background-color: #e8d738;
+  text-decoration: none;
+  color: #222;
+}

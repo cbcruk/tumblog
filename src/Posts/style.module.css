@@ -1,0 +1,10 @@
+.wrapper {
+  max-width: 414px;
+  padding: 20px;
+  margin: 0 auto;
+  transition: all 1s;
+}
+
+.wrapper:global(.is-request) {
+  opacity: 0.1;
+}
