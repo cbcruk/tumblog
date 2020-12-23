@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/blog-tumblr/static/css/main.315ba0b8.chunk.css",
-    "main.js": "/blog-tumblr/static/js/main.3fdfe201.chunk.js",
-    "main.js.map": "/blog-tumblr/static/js/main.3fdfe201.chunk.js.map",
-    "runtime-main.js": "/blog-tumblr/static/js/runtime-main.8a2b82bf.js",
-    "runtime-main.js.map": "/blog-tumblr/static/js/runtime-main.8a2b82bf.js.map",
-    "static/css/2.679831fc.chunk.css": "/blog-tumblr/static/css/2.679831fc.chunk.css",
-    "static/js/2.b8f32cb3.chunk.js": "/blog-tumblr/static/js/2.b8f32cb3.chunk.js",
-    "static/js/2.b8f32cb3.chunk.js.map": "/blog-tumblr/static/js/2.b8f32cb3.chunk.js.map",
-    "index.html": "/blog-tumblr/index.html",
-    "static/css/2.679831fc.chunk.css.map": "/blog-tumblr/static/css/2.679831fc.chunk.css.map",
-    "static/css/main.315ba0b8.chunk.css.map": "/blog-tumblr/static/css/main.315ba0b8.chunk.css.map",
-    "static/js/2.b8f32cb3.chunk.js.LICENSE.txt": "/blog-tumblr/static/js/2.b8f32cb3.chunk.js.LICENSE.txt"
+    "main.css": "https://cbcruk.github.io/blog-tumblr/static/css/main.315ba0b8.chunk.css",
+    "main.js": "https://cbcruk.github.io/blog-tumblr/static/js/main.3fdfe201.chunk.js",
+    "main.js.map": "https://cbcruk.github.io/blog-tumblr/static/js/main.3fdfe201.chunk.js.map",
+    "runtime-main.js": "https://cbcruk.github.io/blog-tumblr/static/js/runtime-main.083b532e.js",
+    "runtime-main.js.map": "https://cbcruk.github.io/blog-tumblr/static/js/runtime-main.083b532e.js.map",
+    "static/css/2.679831fc.chunk.css": "https://cbcruk.github.io/blog-tumblr/static/css/2.679831fc.chunk.css",
+    "static/js/2.b8f32cb3.chunk.js": "https://cbcruk.github.io/blog-tumblr/static/js/2.b8f32cb3.chunk.js",
+    "static/js/2.b8f32cb3.chunk.js.map": "https://cbcruk.github.io/blog-tumblr/static/js/2.b8f32cb3.chunk.js.map",
+    "index.html": "https://cbcruk.github.io/blog-tumblr/index.html",
+    "static/css/2.679831fc.chunk.css.map": "https://cbcruk.github.io/blog-tumblr/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.315ba0b8.chunk.css.map": "https://cbcruk.github.io/blog-tumblr/static/css/main.315ba0b8.chunk.css.map",
+    "static/js/2.b8f32cb3.chunk.js.LICENSE.txt": "https://cbcruk.github.io/blog-tumblr/static/js/2.b8f32cb3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8a2b82bf.js",
+    "static/js/runtime-main.083b532e.js",
     "static/css/2.679831fc.chunk.css",
     "static/js/2.b8f32cb3.chunk.js",
     "static/css/main.315ba0b8.chunk.css",
