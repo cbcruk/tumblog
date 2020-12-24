@@ -9,8 +9,8 @@ function Media({ image, sourceUrl }) {
       style={{
         '--width': width,
         '--height': height,
-        '--gradient-start': `#${colors.c0}`,
-        '--gradient-end': `#${colors.c1}`
+        '--gradient-start': `#${colors?.c0 ?? '#000'}`,
+        '--gradient-end': `#${colors?.c1 ?? '#000'}`
       }}
     >
       <a href={sourceUrl} target="_blank" rel="noreferrer">
