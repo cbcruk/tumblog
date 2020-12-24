@@ -1,5 +1,6 @@
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  HashRouter,
   Switch,
   Route,
   Redirect
@@ -8,6 +9,9 @@ import Header from './Header'
 import Posts from './Posts'
 
 function App() {
+  const isGithub = window.location.hostname === 'cbcruk.github.io'
+  const Router = isGithub ? HashRouter : BrowserRouter
+
   return (
     <Router>
       <Header />
