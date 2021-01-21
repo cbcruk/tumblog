@@ -1,7 +1,7 @@
 import styles from './style.module.css'
 
-function Media({ image, sourceUrl }) {
-  const { url, width, height, colors } = image.media[2]
+function Media({ image, colors, sourceUrl }) {
+  const { url, width, height } = image
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { IconClose, IconSearch } from '../../Icons'
-import useSearch from './hooks/useSearch'
+import useSearch from './useSearch'
 import styles from './style.module.css'
 
 function Search() {
@@ -36,8 +36,7 @@ function Search() {
           toggleForm()
         }}
       >
-        <IconClose hidden={!isShow} />
-        <IconSearch hidden={isShow} />
+        {isShow ? <IconClose /> : <IconSearch />}
       </button>
     </div>
   )

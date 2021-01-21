@@ -7,3 +7,6 @@ npm-debug.log
 *.bs.js
 /build
 .eslintcache
+.next
+.vercel
+.env
